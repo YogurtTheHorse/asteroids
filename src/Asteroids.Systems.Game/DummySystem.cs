@@ -1,6 +1,7 @@
 using Asteroids.Core;
 using Asteroids.Core.Systems;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Asteroids.Systems.Game
 {
@@ -8,7 +9,10 @@ namespace Asteroids.Systems.Game
     {
         public class Dummy : Component { }
 
-        public DummySystem(World world) : base(world) { }
+        public DummySystem(World world) : base(world)
+        {
+            world.Register<SpawnDummy>(d => CreateDummy(d.Position, d.Texture));
+        }
 
         public override void Update(Entity entity, GameTime delta)
         {
@@ -16,5 +20,18 @@ namespace Asteroids.Systems.Game
 
             transform.Rotation += (float)delta.ElapsedGameTime.TotalSeconds;
         }
+        
+        public void CreateDummy(Vector2 position, Texture2D texture) => World
+            .CreateEntity()
+            .Attach(new Transform
+            {
+                Position = position
+            })
+            .Attach(new SpriteRenderer
+            {
+                Texture = texture,
+                Scale = 0.1f
+            })
+            .Attach(new Dummy());
     }
 }

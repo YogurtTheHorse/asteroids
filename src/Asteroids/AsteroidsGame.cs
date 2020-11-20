@@ -27,22 +27,11 @@ namespace Asteroids
         protected override void Initialize()
         {
             base.Initialize();
-            
+
             _world
                 .Register(new SpriteRendererSystem(GraphicsDevice, _world))
-                .Register(new DummySystem(_world));
-            
-            _world
-                .CreateEntity()
-                .Attach(new Transform
-                {
-                    Position = new Vector2(10f, 10f)
-                })
-                .Attach(new SpriteRenderer
-                {
-                    Texture = Content.Load<Texture2D>("asteroid")
-                })
-                .Attach(new DummySystem.Dummy());
+                .Register(new DummySystem(_world))
+                .Register(new DummySpawner(_world, Content.Load<Texture2D>("asteroid")));
         }
 
         protected override void Update(GameTime gameTime)
