@@ -6,7 +6,21 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
+        <MonoGameContentReference Include="Content\Content.mgcb" />
     </ItemGroup>
 
+    <ItemGroup>
+        <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
+        <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Asteroids.Core\Asteroids.Core.csproj" />
+        <ProjectReference Include="..\Asteroids.Systems.Game\Asteroids.Systems.Game.csproj" />
+        <ProjectReference Include="..\Asteroids.Systems\Asteroids.Systems.csproj" />
+    </ItemGroup>
 </Project>
