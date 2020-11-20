@@ -2,11 +2,20 @@
 
 namespace Asteroids
 {
-    class Program
+    /// <summary>
+    /// Main program class with startup logic.
+    /// </summary>
+    public class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// Entry point of the program.
+        /// </summary>
+        /// <param name="args">Console arguments.</param>
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            using var game = new AsteroidsGame();
+            
+            game.Run();
         }
     }
 }
