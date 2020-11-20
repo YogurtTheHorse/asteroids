@@ -1,8 +1,8 @@
-using Asteroids.Core;
+using Asteroids.Core.Ecs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Asteroids.Systems
+namespace Asteroids.Systems.Renders
 {
     /// <summary>
     /// Describes sprite to draw. All comments about properties can be found at <see cref="SpriteBatch.Draw"/>.

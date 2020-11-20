@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace Asteroids.Core.Systems
+namespace Asteroids.Core.Ecs.Systems
 {
     public abstract class EntityProcessingSystem<T> : AbstractSystem, IUpdateSystem where T : Component
     {

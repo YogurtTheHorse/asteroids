@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Asteroids.Core
+namespace Asteroids.Core.Ecs
 {
     public class Entity
     {

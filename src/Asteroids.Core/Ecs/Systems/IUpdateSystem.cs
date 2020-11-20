@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace Asteroids.Core
+namespace Asteroids.Core.Ecs.Systems
 {
     /// <summary>
     /// System for handling updates.

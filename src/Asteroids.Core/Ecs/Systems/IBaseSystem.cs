@@ -1,4 +1,4 @@
-namespace Asteroids.Core
+namespace Asteroids.Core.Ecs.Systems
 {
     public interface IBaseSystem
     {

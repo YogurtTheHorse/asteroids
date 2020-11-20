@@ -1,10 +1,10 @@
-﻿using System;
-using Asteroids.Core;
-using Asteroids.Core.Systems;
+﻿using Asteroids.Core;
+using Asteroids.Core.Ecs;
+using Asteroids.Core.Ecs.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Asteroids.Systems
+namespace Asteroids.Systems.Renders
 {
     public class SpriteRendererSystem : AbstractSystem, IDrawSystem
     {

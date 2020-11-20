@@ -1,6 +1,4 @@
-using System;
-
-namespace Asteroids.Core
+namespace Asteroids.Core.Ecs
 {
     public abstract class Component
     {

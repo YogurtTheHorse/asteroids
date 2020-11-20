@@ -1,4 +1,4 @@
-namespace Asteroids.Core.Systems
+namespace Asteroids.Core.Ecs.Systems
 {
     public abstract class AbstractSystem : IBaseSystem
     {
