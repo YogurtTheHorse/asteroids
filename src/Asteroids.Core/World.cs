@@ -80,6 +80,7 @@ namespace Asteroids.Core
             foreach (Message message in messages)
             foreach (MessageHandler handler in _messageHandlers)
             {
+                // todo: add error handling
                 handler.Handle(message);
             }
 
@@ -92,6 +93,7 @@ namespace Asteroids.Core
 
             foreach (IUpdateSystem updateSystem in _updateSystems)
             {
+                // todo: add error handling
                 updateSystem.Update(gameTime);
             }
         }
@@ -100,6 +102,7 @@ namespace Asteroids.Core
         {
             foreach (IDrawSystem drawSystem in _drawSystems)
             {
+                // todo: add error handling
                 drawSystem.Draw();
             }
         }
