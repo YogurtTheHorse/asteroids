@@ -9,7 +9,12 @@ namespace Asteroids.Systems.Game
 {
     public class DummySystem : EntityProcessingSystem<DummySystem.Dummy>
     {
-        public class Dummy : Component { }
+        public class Dummy : Component
+        {
+            public Dummy() => this
+                .Require<Transform>()
+                .Require<SpriteRenderer>();
+        }
 
         public DummySystem(World world) : base(world)
         {
@@ -22,8 +27,8 @@ namespace Asteroids.Systems.Game
 
             transform.Rotation += (float)delta.ElapsedGameTime.TotalSeconds;
         }
-        
-        public void CreateDummy(Vector2 position, Texture2D texture) => World
+
+        private void CreateDummy(Vector2 position, Texture2D texture) => World
             .CreateEntity()
             .Attach(new Transform
             {
