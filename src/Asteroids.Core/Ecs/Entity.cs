@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Asteroids.Core.Exceptions;
 
 namespace Asteroids.Core.Ecs
 {
@@ -19,13 +20,37 @@ namespace Asteroids.Core.Ecs
 
         public Entity Attach(Component component)
         {
+            foreach (var requiredComponent in component.RequiredComponents)
+            {
+                if (!Has(requiredComponent))
+                {
+                    throw new ComponentNotFoundException(requiredComponent, Id);
+                }
+            }
+            
             _components.Add(component);
             return this;
         }
 
         public Entity DeAttach(Component component)
         {
-            _components.Remove(component);
+            // TODO: Add check this component was last of that type
+
+            foreach (var attachedComponent in _components)
+            foreach (var requiredComponent in attachedComponent.RequiredComponents)
+            {
+                if (requiredComponent.IsInstanceOfType(component))
+                {
+                    throw new CoreException(
+                        $"{component.GetType().Name} can't be removed, because it's required by {requiredComponent.Name}"
+                    );
+                }
+            }
+
+            if (!_components.Remove(component))
+            {
+                throw new ComponentNotFoundException(component.GetType(), Id);
+            }
 
             return this;
         }
@@ -45,7 +70,7 @@ namespace Asteroids.Core.Ecs
 
             if (component is null)
             {
-                throw new KeyNotFoundException($"Component of type {typeof(T).Name} is not present on entity {Id}");
+                throw new ComponentNotFoundException(typeof(T), Id);
             }
 
             return component;

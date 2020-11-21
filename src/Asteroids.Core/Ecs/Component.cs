@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Asteroids.Core.Ecs
 {
@@ -17,5 +18,7 @@ namespace Asteroids.Core.Ecs
             _requiredTypes.Add(typeof(T));
             return this;
         }
+        
+        public ReadOnlyCollection<Type> RequiredComponents => _requiredTypes.AsReadOnly();
     }
 }
