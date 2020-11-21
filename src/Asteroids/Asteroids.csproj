@@ -20,7 +20,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Asteroids.Core\Asteroids.Core.csproj" />
-        <ProjectReference Include="..\Asteroids.Systems.Game\Asteroids.Systems.Game.csproj" />
-        <ProjectReference Include="..\Asteroids.Systems\Asteroids.Systems.csproj" />
+        <ProjectReference Include="..\Asteroids.Game\Asteroids.Game.csproj" />
     </ItemGroup>
 </Project>

@@ -2,12 +2,12 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
+        <RootNamespace>Asteroids.Systems.Game</RootNamespace>
+        <LangVersion>9</LangVersion>
         <Nullable>enable</Nullable>
-        <LangVersion>9.0</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Asteroids.Core\Asteroids.Core.csproj" />
     </ItemGroup>
-
 </Project>

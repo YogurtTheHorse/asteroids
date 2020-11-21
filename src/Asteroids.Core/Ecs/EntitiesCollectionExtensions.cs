@@ -14,11 +14,11 @@ namespace Asteroids.Core.Ecs
     /// </remarks>
     public static class EntitiesCollectionExtensions
     {
-        public static IEnumerable<Entity> With<T>(this IEnumerable<Entity> entites) where T : Component =>
-            entites.Where(e => e.Has<T>());
+        public static IEnumerable<Entity> With<T>(this IEnumerable<Entity> entities) where T : Component =>
+            entities.Where(e => e.Has<T>());
         
-        public static IEnumerable<Entity> Without<T>(this IEnumerable<Entity> entites) where T : Component =>
-            entites.Where(e => e.HasNot<T>());
+        public static IEnumerable<Entity> Without<T>(this IEnumerable<Entity> entities) where T : Component =>
+            entities.Where(e => !e.Has<T>());
 
         public static void ForEach(this IEnumerable<Entity> entities, Action<Entity> action)
         {

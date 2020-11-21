@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,7 +30,14 @@ namespace Asteroids.Core.Ecs
             return this;
         }
 
-        public bool Has<T>() where T : Component => TryGet<T>() is not null;
+        public bool Has<T>() where T : Component => Has(typeof(T));
+
+        /// <summary>
+        /// Checks whether entity has component of type.
+        /// </summary>
+        /// <param name="componentType">Type of checked component.</param>
+        /// <returns>True if there is a component of provided type attached to entity.</returns>
+        public bool Has(Type componentType) => _components.Any(componentType.IsInstanceOfType);
 
         public T Get<T>() where T : Component
         {
@@ -55,7 +63,5 @@ namespace Asteroids.Core.Ecs
 
             return null;
         }
-
-        public bool HasNot<T>() where T : Component => _components.All(x => x is not T);
     }
 }

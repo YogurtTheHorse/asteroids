@@ -4,9 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteroids", "Asteroids\Aste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteroids.Core", "Asteroids.Core\Asteroids.Core.csproj", "{E8FE5566-7614-4727-9C6A-6B5A320BED36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteroids.Systems", "Asteroids.Systems\Asteroids.Systems.csproj", "{AD996E9C-DC38-428C-B401-6BFFFAD43C55}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteroids.Systems.Game", "Asteroids.Systems.Game\Asteroids.Systems.Game.csproj", "{7DF078B5-A15C-4F8C-9C34-0D7FF0D2ADC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteroids.Game", "Asteroids.Game\Asteroids.Game.csproj", "{7DF078B5-A15C-4F8C-9C34-0D7FF0D2ADC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,10 +20,6 @@ Global
 		{E8FE5566-7614-4727-9C6A-6B5A320BED36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8FE5566-7614-4727-9C6A-6B5A320BED36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8FE5566-7614-4727-9C6A-6B5A320BED36}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD996E9C-DC38-428C-B401-6BFFFAD43C55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD996E9C-DC38-428C-B401-6BFFFAD43C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD996E9C-DC38-428C-B401-6BFFFAD43C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD996E9C-DC38-428C-B401-6BFFFAD43C55}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7DF078B5-A15C-4F8C-9C34-0D7FF0D2ADC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7DF078B5-A15C-4F8C-9C34-0D7FF0D2ADC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DF078B5-A15C-4F8C-9C34-0D7FF0D2ADC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
