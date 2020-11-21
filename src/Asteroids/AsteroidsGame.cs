@@ -1,5 +1,7 @@
 ﻿using Asteroids.Core;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.MessageHandlers;
+using Asteroids.Systems.Game.Messages;
 using Asteroids.Systems.Game.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -35,6 +37,13 @@ namespace Asteroids
                 .Register(new KeepInScreenSystem(GraphicsDevice, _world));
 
             _world
+                .Register(new AsteroidSpawner(
+                    GraphicsDevice,
+                    Content.Load<Texture2D>("asteroid"),
+                    _world
+                ));
+
+            _world
                 .CreateEntity()
                 .Attach(new Transform())
                 .Attach(new Rigidbody())
@@ -43,6 +52,11 @@ namespace Asteroids
                     Texture = Content.Load<Texture2D>("ship")
                 })
                 .Attach(new Player());
+            
+            _world.Send(new SpawnAsteroid()
+            {
+                Size = _world.Random.Next(1, 4)
+            });
         }
 
         protected override void Update(GameTime gameTime)

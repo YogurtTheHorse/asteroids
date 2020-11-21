@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Asteroids.Core.Ecs;
@@ -20,6 +21,10 @@ namespace Asteroids.Core
         private readonly List<IMessageHandler> _messageHandlers;
         private readonly Queue<Message> _messagesQueue;
 
+        public IEnumerable<Entity> Entities => _entities.AsReadOnly();
+        
+        public Random Random { get; }
+
         public World()
         {
             _updateSystems = new List<IUpdateSystem>();
@@ -29,9 +34,9 @@ namespace Asteroids.Core
             _messageHandlers = new List<IMessageHandler>();
 
             _entitiesCounter = 0;
-        }
 
-        public IEnumerable<Entity> Entities => _entities.AsReadOnly();
+            Random = new Random();
+        }
 
         public World Register(IUpdateSystem updateSystem)
         {
@@ -56,7 +61,7 @@ namespace Asteroids.Core
 
         public World Register<T>(MessageHandlerType<T> handle) where T : Message
         {
-            _messageHandlers.Add(new TypedMessageHandler<T>(handle));
+            _messageHandlers.Add(new InlineTypedMessageHandler<T>(handle));
 
             return this;
         }
