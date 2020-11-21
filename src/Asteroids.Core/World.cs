@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Asteroids.Core.Ecs;
@@ -18,7 +17,7 @@ namespace Asteroids.Core
         private readonly List<Entity> _entities;
         private int _entitiesCounter;
 
-        private readonly List<MessageHandler> _messageHandlers;
+        private readonly List<IMessageHandler> _messageHandlers;
         private readonly Queue<Message> _messagesQueue;
 
         public World()
@@ -27,7 +26,7 @@ namespace Asteroids.Core
             _drawSystems = new List<IDrawSystem>();
             _entities = new List<Entity>();
             _messagesQueue = new Queue<Message>();
-            _messageHandlers = new List<MessageHandler>();
+            _messageHandlers = new List<IMessageHandler>();
 
             _entitiesCounter = 0;
         }
@@ -48,7 +47,7 @@ namespace Asteroids.Core
             return this;
         }
 
-        public World Register(MessageHandler handler)
+        public World Register(IMessageHandler handler)
         {
             _messageHandlers.Add(handler);
 
@@ -78,7 +77,7 @@ namespace Asteroids.Core
             _messagesQueue.Clear();
 
             foreach (Message message in messages)
-            foreach (MessageHandler handler in _messageHandlers)
+            foreach (IMessageHandler handler in _messageHandlers)
             {
                 // todo: add error handling
                 handler.Handle(message);

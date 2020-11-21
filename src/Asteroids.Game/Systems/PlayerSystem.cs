@@ -2,13 +2,17 @@
 using Asteroids.Core;
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
+using Asteroids.Core.Utils;
 using Asteroids.Systems.Game.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace Asteroids.Systems.Game.Systems
 {
-    public class PlayerSystem : EntityProcessingSystem<Player>, IUpdateSystem
+    /// <summary>
+    /// System that handles keyboard states and control player.
+    /// </summary>
+    public class PlayerSystem : EntityProcessingSystem<Player>
     {
         public float RotationSpeed { get; set; } = MathF.PI;
 

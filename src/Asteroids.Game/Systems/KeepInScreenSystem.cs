@@ -7,10 +7,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Asteroids.Systems.Game.Systems
 {
-    public class HoldInScreenSystem : EntityProcessingSystem<Transform>
+    /// <summary>
+    /// System that keeps entities inside screen.
+    /// </summary>
+    public class KeepInScreenSystem : EntityProcessingSystem<Transform>
     {
         private readonly GraphicsDevice _graphicsDevice;
-        public HoldInScreenSystem(GraphicsDevice graphicsDevice, World world) : base(world)
+        
+        public KeepInScreenSystem(GraphicsDevice graphicsDevice, World world) : base(world)
         {
             _graphicsDevice = graphicsDevice;
         }

@@ -1,11 +1,8 @@
 ﻿using Asteroids.Core;
-using Asteroids.Systems;
-using Asteroids.Systems.Game;
 using Asteroids.Systems.Game.Components;
 using Asteroids.Systems.Game.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace Asteroids
 {
@@ -35,7 +32,7 @@ namespace Asteroids
                 .Register(new PolygonRendererSystem(GraphicsDevice, _world))
                 .Register(new RigidbodySystem(_world))
                 .Register(new PlayerSystem(_world))
-                .Register(new HoldInScreenSystem(GraphicsDevice, _world));
+                .Register(new KeepInScreenSystem(GraphicsDevice, _world));
 
             _world
                 .CreateEntity()
@@ -57,7 +54,7 @@ namespace Asteroids
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             
             _world.Draw(gameTime);
 

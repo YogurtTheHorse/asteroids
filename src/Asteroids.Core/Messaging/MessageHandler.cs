@@ -1,7 +1,14 @@
 namespace Asteroids.Core.Messaging
 {
-    public abstract class MessageHandler
+    /// <summary>
+    /// Interface for generic message handlers.
+    /// </summary>
+    public interface IMessageHandler
     {
-        public abstract void Handle(Message message);
+        /// <summary>
+        /// Handles a generic message.
+        /// </summary>
+        /// <param name="message">Message to handle.</param>
+        void Handle(Message message);
     }
 }

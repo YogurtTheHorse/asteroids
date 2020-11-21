@@ -22,34 +22,34 @@ namespace Asteroids.Systems.Game.Systems
 
             World.Entities
                 .With<SpriteRenderer>()
-                .With<Transform>()
-                .ForEach(e =>
-                {
-                    var transform = e.Get<Transform>();
-                    var sprite = e.Get<SpriteRenderer>();
-
-                    if (sprite.Texture is null)
-                    {
-                        return;
-                    }
-                    
-                    Vector2 origin = sprite.Origin * new Vector2(sprite.Texture.Width, sprite.Texture.Height); 
-                    
-                    _spritesBatch.Draw(
-                        sprite.Texture,
-                        transform.Position,
-                        sprite.TextureRectangle,
-                        sprite.Color,
-                        transform.Rotation,
-                        origin,
-                        sprite.Scale,
-                        sprite.Effects,
-                        sprite.LayerDepth
-                    );
-                });
-
+                .ForEach(DrawEntity);
 
             _spritesBatch.End();
+
+            void DrawEntity(Entity e)
+            {
+                var transform = e.Get<Transform>();
+                var sprite = e.Get<SpriteRenderer>();
+
+                if (sprite.Texture is null)
+                {
+                    return;
+                }
+                    
+                Vector2 origin = sprite.Origin * new Vector2(sprite.Texture.Width, sprite.Texture.Height); 
+                    
+                _spritesBatch.Draw(
+                    sprite.Texture,
+                    transform.Position,
+                    sprite.TextureRectangle,
+                    sprite.Color,
+                    transform.Rotation,
+                    origin,
+                    sprite.Scale,
+                    sprite.Effects,
+                    sprite.LayerDepth
+                );
+            }
         }
     }
 }

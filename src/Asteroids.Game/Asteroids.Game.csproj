@@ -10,4 +10,8 @@
     <ItemGroup>
       <ProjectReference Include="..\Asteroids.Core\Asteroids.Core.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Messages" />
+    </ItemGroup>
 </Project>

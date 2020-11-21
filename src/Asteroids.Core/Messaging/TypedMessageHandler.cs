@@ -1,11 +1,9 @@
-using System;
-
 namespace Asteroids.Core.Messaging
 {
     /// <summary>
     /// Delegate describing typed handler.
     /// </summary>
-    /// <param name="message">Message handler is receivng.</param>
+    /// <param name="message">Message handler is receiving.</param>
     /// <typeparam name="T">Message type.</typeparam>
     /// <remarks>
     /// I use delegates because they are more generic and lightweight than actions in generic case, but in
@@ -13,7 +11,7 @@ namespace Asteroids.Core.Messaging
     /// </remarks>
     public delegate void MessageHandlerType<in T>(T message) where T : Message;
     
-    public class TypedMessageHandler<T> : MessageHandler where T : Message
+    public class TypedMessageHandler<T> : IMessageHandler where T : Message
     {
         private readonly MessageHandlerType<T> _handler;
 
@@ -22,7 +20,7 @@ namespace Asteroids.Core.Messaging
             _handler = handler;
         }
         
-        public override void Handle(Message message)
+        public void Handle(Message message)
         {
             if (message is T typed)
             {

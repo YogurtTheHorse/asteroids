@@ -1,5 +1,4 @@
-﻿using System;
-using Asteroids.Core;
+﻿using Asteroids.Core;
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
 using Asteroids.Systems.Game.Components;
@@ -7,11 +6,12 @@ using Microsoft.Xna.Framework;
 
 namespace Asteroids.Systems.Game.Systems
 {
+    /// <summary>
+    /// System that handles velocities of entities with rigidbody.
+    /// </summary>
     public class RigidbodySystem : EntityProcessingSystem<Rigidbody>
     {
-        public RigidbodySystem(World world) : base(world)
-        {
-        }
+        public RigidbodySystem(World world) : base(world) { }
 
         public override void Update(Entity body, GameTime gameTime)
         {

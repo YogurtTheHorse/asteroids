@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Asteroids
+﻿namespace Asteroids
 {
     /// <summary>
     /// Main program class with startup logic.
