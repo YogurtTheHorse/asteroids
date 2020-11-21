@@ -28,7 +28,7 @@ namespace Asteroids.Systems.Game.MessageHandlers
         {
             var x = (float) _world.Random.NextDouble() * _graphicsDevice.Viewport.Width;
             var y = (float) _world.Random.NextDouble() * _graphicsDevice.Viewport.Height;
-            var directionAngle = (float) _world.Random.NextDouble() * 2 * MathF.PI;
+            var directionAngle = (float) (_world.Random.NextDouble() - 0.5d) * 4 * MathF.PI;
             var startingVelocity = MaxVelocity / message.Size;
             
             // TODO: Check is asteroid intersect ship.

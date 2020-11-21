@@ -4,6 +4,7 @@ using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
 using Asteroids.Core.Utils;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Messages;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -20,15 +21,16 @@ namespace Asteroids.Systems.Game.Systems
 
         public PlayerSystem(World world) : base(world)
         {
+            world.Register<KeyPressed>(KeyPressedHandler);
         }
 
         public override void Update(Entity player, GameTime delta)
         {
             var rigidbody = player.Get<Rigidbody>();
             var transform = player.Get<Transform>();
-            
+
             var keyboardSate = Keyboard.GetState();
-            
+
             rigidbody.AngularVelocity = 0;
 
             if (keyboardSate.IsKeyDown(Keys.Left))
@@ -47,9 +49,15 @@ namespace Asteroids.Systems.Game.Systems
             }
             else
             {
-                rigidbody.Acceleration = Vector2.Zero;   
+                rigidbody.Acceleration = Vector2.Zero;
             }
+        }
 
+        private void KeyPressedHandler(KeyPressed message)
+        {
+            if (message.Key != Keys.X) return;
+
+            World.Send(new SpawnAsteroid {Size = World.Random.Next(1, 4)});
         }
     }
 }

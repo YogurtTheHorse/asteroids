@@ -1,4 +1,5 @@
-﻿using Asteroids.Core;
+﻿using System;
+using Asteroids.Core;
 using Asteroids.Systems.Game.Components;
 using Asteroids.Systems.Game.MessageHandlers;
 using Asteroids.Systems.Game.Messages;
@@ -34,7 +35,8 @@ namespace Asteroids
                 .Register(new PolygonRendererSystem(GraphicsDevice, _world))
                 .Register(new RigidbodySystem(_world))
                 .Register(new PlayerSystem(_world))
-                .Register(new KeepInScreenSystem(GraphicsDevice, _world));
+                .Register(new KeepInScreenSystem(GraphicsDevice, _world))
+                .Register(new KeyboardSystem(_world));
 
             _world
                 .Register(new AsteroidSpawner(
@@ -71,6 +73,8 @@ namespace Asteroids
             GraphicsDevice.Clear(Color.Black);
             
             _world.Draw(gameTime);
+            
+            Console.WriteLine($"FPS: {1 / gameTime.ElapsedGameTime.TotalSeconds}");
 
             base.Draw(gameTime);
         }
