@@ -1,7 +1,7 @@
 ﻿using Asteroids.Core;
 using Asteroids.Systems;
 using Asteroids.Systems.Game;
-using Asteroids.Systems.Renders;
+using Asteroids.Systems.Game.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;

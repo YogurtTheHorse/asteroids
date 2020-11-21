@@ -1,8 +1,7 @@
-using Asteroids.Core;
 using Asteroids.Core.Ecs;
 using Microsoft.Xna.Framework;
 
-namespace Asteroids.Systems
+namespace Asteroids.Systems.Game.Components
 {
     public class Transform : Component
     {

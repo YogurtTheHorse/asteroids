@@ -1,11 +1,12 @@
 using Asteroids.Core;
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
-using Asteroids.Systems.Renders;
+using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Messages;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Asteroids.Systems.Game
+namespace Asteroids.Systems.Game.Systems
 {
     public class DummySystem : EntityProcessingSystem<DummySystem.Dummy>
     {
