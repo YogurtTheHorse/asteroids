@@ -1,6 +1,7 @@
 ﻿using Asteroids.Core;
 using Asteroids.Systems;
 using Asteroids.Systems.Game;
+using Asteroids.Systems.Game.Components;
 using Asteroids.Systems.Game.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -31,8 +32,20 @@ namespace Asteroids
 
             _world
                 .Register(new SpriteRendererSystem(GraphicsDevice, _world))
-                .Register(new DummySystem(_world))
-                .Register(new DummySpawner(_world, Content.Load<Texture2D>("asteroid")));
+                .Register(new PolygonRendererSystem(GraphicsDevice, _world))
+                .Register(new RigidbodySystem(_world))
+                .Register(new PlayerSystem(_world))
+                .Register(new HoldInScreenSystem(GraphicsDevice, _world));
+
+            _world
+                .CreateEntity()
+                .Attach(new Transform())
+                .Attach(new Rigidbody())
+                .Attach(new SpriteRenderer
+                {
+                    Texture = Content.Load<Texture2D>("ship")
+                })
+                .Attach(new Player());
         }
 
         protected override void Update(GameTime gameTime)

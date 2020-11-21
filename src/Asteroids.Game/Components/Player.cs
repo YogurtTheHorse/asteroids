@@ -8,7 +8,7 @@ namespace Asteroids.Systems.Game.Components
 
         public Player() => this
             .Require<Transform>()
-            .Require<Rigidbody>();
-
+            .Require<Rigidbody>()
+            .Require<Renderer>();
     }
 }

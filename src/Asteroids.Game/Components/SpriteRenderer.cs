@@ -7,11 +7,9 @@ namespace Asteroids.Systems.Game.Components
     /// <summary>
     /// Describes sprite to draw. All comments about properties can be found at <see cref="SpriteBatch.Draw"/>.
     /// </summary>
-    public class SpriteRenderer : Component
+    public class SpriteRenderer : Renderer
     {
         public Texture2D? Texture { get; set; }
-        
-        public Color Color { get; set; } = Color.White;
         
         public Rectangle? TextureRectangle { get; set; }
 
@@ -21,9 +19,9 @@ namespace Asteroids.Systems.Game.Components
         public Vector2 Origin { get; set; } = new(0.5f);
 
         public float Scale { get; set; } = 1f;
-
-        public SpriteEffects Effects { get; set; } = SpriteEffects.None;
         
         public float LayerDepth { get; set; }
+
+        public SpriteEffects Effects { get; set; } = SpriteEffects.None;
     }
 }
