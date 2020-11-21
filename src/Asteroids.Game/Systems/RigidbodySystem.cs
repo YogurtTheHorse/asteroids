@@ -1,4 +1,5 @@
-﻿using Asteroids.Core;
+﻿using System;
+using Asteroids.Core;
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
 using Asteroids.Systems.Game.Components;
@@ -26,6 +27,16 @@ namespace Asteroids.Systems.Game.Systems
 
             transform.Position += rigidbody.Velocity * delta;
             transform.Rotation += rigidbody.AngularVelocity * delta;
+
+            if (transform.Rotation > MathF.PI * 2)
+            {
+                transform.Rotation -= MathF.PI * 2;
+            }
+
+            if (transform.Rotation < -MathF.PI * 2)
+            {
+                transform.Rotation += MathF.PI * 2;
+            }
         }
     }
 }

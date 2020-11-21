@@ -9,7 +9,7 @@ namespace Asteroids.Systems.Game.Components
     public class SpriteRenderer : Renderer
     {
         public Texture2D? Texture { get; set; }
-        
+
         public Rectangle? TextureRectangle { get; set; }
 
         /// <summary>
@@ -18,9 +18,13 @@ namespace Asteroids.Systems.Game.Components
         public Vector2 Origin { get; set; } = new(0.5f);
 
         public float Scale { get; set; } = 1f;
-        
+
         public float LayerDepth { get; set; }
 
         public SpriteEffects Effects { get; set; } = SpriteEffects.None;
+
+        public override Vector2 GetBoundaries() => Texture is null
+            ? Vector2.Zero
+            : new Vector2(Texture.Width, Texture.Height) * Scale;
     }
 }

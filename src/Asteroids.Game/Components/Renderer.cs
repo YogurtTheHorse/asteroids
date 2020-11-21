@@ -14,5 +14,7 @@ namespace Asteroids.Systems.Game.Components
         public Color Color { get; set; }= Color.White;
 
         public Renderer() => Require<Transform>();
+
+        public abstract Vector2 GetBoundaries();
     }
 }

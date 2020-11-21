@@ -21,5 +21,7 @@ namespace Asteroids.Systems.Game.Components
         public float Thickness { get; set; } = 1f;
 
         public PolygonRenderer() => Require<Transform>();
+
+        public override Vector2 GetBoundaries() => Vector2.Zero;
     }
 }
