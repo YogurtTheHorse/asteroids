@@ -1,0 +1,3 @@
+[submodule "submodules/SharpMath2"]
+	path = submodules/SharpMath2
+	url = https://github.com/Tjstretchalot/SharpMath2.git

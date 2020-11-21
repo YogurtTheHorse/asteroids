@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteroids.Game", "Asteroids
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteroids.Core.Tests", "Asteroids.Core.Tests\Asteroids.Core.Tests.csproj", "{D752E618-29B5-4A71-9240-10171584390C}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharpMath2", "..\submodules\SharpMath2\SharpMath2.shproj", "{53290E9B-7A54-4098-AB3D-E936D93BDF97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
