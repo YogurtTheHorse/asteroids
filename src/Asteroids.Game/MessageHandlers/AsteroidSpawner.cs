@@ -4,10 +4,11 @@ using Asteroids.Core;
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Messaging;
 using Asteroids.Core.Utils;
-using Asteroids.PolygonLoading;
 using Asteroids.Systems.Game.Components;
 using Asteroids.Systems.Game.Messages;
+using Asteroids.Systems.Game.PolygonLoading;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SharpMath2;
 
@@ -15,17 +16,18 @@ namespace Asteroids.Systems.Game.MessageHandlers
 {
     public class AsteroidSpawner : TypedMessageHandler<SpawnAsteroid>
     {
+        public const int MaxSize = 4; 
         public float MaxVelocity { get; set; } = 200f;
         
         private readonly GraphicsDevice _graphicsDevice;
-        private readonly Texture2D _asteroidTexture;
+        private readonly ContentManager _content;
         private readonly PolygonLoader _polygonLoader;
         private readonly World _world;
 
-        public AsteroidSpawner(GraphicsDevice graphicsDevice, Texture2D asteroidTexture, PolygonLoader polygonLoader, World world)
+        public AsteroidSpawner(GraphicsDevice graphicsDevice, ContentManager content, PolygonLoader polygonLoader, World world)
         {
             _graphicsDevice = graphicsDevice;
-            _asteroidTexture = asteroidTexture;
+            _content = content;
             _polygonLoader = polygonLoader;
             _world = world;
         }
@@ -38,18 +40,17 @@ namespace Asteroids.Systems.Game.MessageHandlers
             );
             float directionAngle = (float) (_world.Random.NextDouble() - 0.5d) * 4 * MathF.PI;
             float startingVelocity = MaxVelocity / message.Size;
-            float scale = message.Size / 8f;
             
             // TODO: Check is asteroid intersect ship.
+            string name = $"planetoids/planetoid_{MaxSize - message.Size + 1}";
 
-            PolygonRenderer polygon = _polygonLoader.Load("polygons/asteroids/big");
+            PolygonRenderer polygon = _polygonLoader.Load($"polygons/{name}");
             
             _world
                 .CreateEntity()
                 .Attach(new Transform
                 {
-                    Position = position,
-                    Scale = scale
+                    Position = position
                 })
                 .Attach(new Rigidbody
                 {
@@ -58,10 +59,10 @@ namespace Asteroids.Systems.Game.MessageHandlers
                 })
                 .Attach(new SpriteRenderer
                 {
-                    Texture = _asteroidTexture
+                    Texture = _content.Load<Texture2D>(name)
                 })
                 .Attach(polygon)
-                .Attach(new Collider(new Polygon2(polygon.Vertices.Select(v => v * scale).ToArray())))
+                .Attach(new Collider(new Polygon2(polygon.Vertices)))
                 .Attach(new Asteroid
                 {
                     Size = message.Size

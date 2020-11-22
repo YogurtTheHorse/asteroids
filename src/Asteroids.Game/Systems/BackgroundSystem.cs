@@ -13,7 +13,6 @@ namespace Asteroids.Systems.Game.Systems
     {
         public float ParallaxMaxShift { get; set; } = 5f;
 
-        private readonly GraphicsDevice _graphicsDevice;
         private readonly Texture2D _firstLayer;
         private readonly Texture2D _secondLayer;
         private readonly SpriteBatch _spriteBatch;
@@ -21,7 +20,6 @@ namespace Asteroids.Systems.Game.Systems
 
         public BackgroundSystem(GraphicsDevice graphicsDevice, Texture2D firstLayer, Texture2D secondLayer, World world) : base(world)
         {
-            _graphicsDevice = graphicsDevice;
             _firstLayer = firstLayer;
             _secondLayer = secondLayer;
             _spriteBatch = new SpriteBatch(graphicsDevice);

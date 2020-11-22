@@ -61,8 +61,17 @@
 /processorParam:TextureFormat=Color
 /build:laser.png
 
-#begin polygons/asteroids/big.json
-/copy:polygons/asteroids/big.json
+#begin polygons/planetoids/planetoid_1.json
+/copy:polygons/planetoids/planetoid_1.json
+
+#begin polygons/planetoids/planetoid_2.json
+/copy:polygons/planetoids/planetoid_2.json
+
+#begin polygons/planetoids/planetoid_3.json
+/copy:polygons/planetoids/planetoid_3.json
+
+#begin polygons/planetoids/planetoid_4.json
+/copy:polygons/planetoids/planetoid_4.json
 
 #begin polygons/bullet.json
 /copy:polygons/bullet.json
@@ -199,7 +208,7 @@
 #begin sfx/readme.txt
 /copy:sfx/readme.txt
 
-#begin ship.png
+#begin ship/ship.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -209,5 +218,81 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:ship.png
+/build:ship/ship.png
+
+#begin ship/ship_exhaust_1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ship/ship_exhaust_1.png
+
+#begin planetoids/planetoid_1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:planetoids/planetoid_1.png
+
+
+#begin planetoids/planetoid_2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:planetoids/planetoid_2.png
+
+
+#begin planetoids/planetoid_3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:planetoids/planetoid_3.png
+
+
+#begin planetoids/planetoid_4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:planetoids/planetoid_4.png
+
+
+#begin ship/bullet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ship/bullet.png
 

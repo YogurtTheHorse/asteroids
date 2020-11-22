@@ -66,16 +66,19 @@ namespace Asteroids.Core.Ecs
         /// </exception>
         public Entity DeAttach(Component component)
         {
-            // TODO: Add check this component was last of that type
+            Component[] all = GetAll(component.GetType()).ToArray();
 
-            foreach (var attachedComponent in _components)
-            foreach (var requiredComponent in attachedComponent.RequiredComponents)
+            if (all.Length == 1) // Last
             {
-                if (requiredComponent.IsInstanceOfType(component))
+                foreach (var attachedComponent in _components)
+                foreach (var requiredComponent in attachedComponent.RequiredComponents)
                 {
-                    throw new CoreException(
-                        $"{component.GetType().Name} can't be removed, because it's required by {requiredComponent.Name}"
-                    );
+                    if (requiredComponent.IsInstanceOfType(component))
+                    {
+                        throw new CoreException(
+                            $"{component.GetType().Name} can't be removed, because it's required by {requiredComponent.Name}"
+                        );
+                    }
                 }
             }
 
@@ -141,5 +144,8 @@ namespace Asteroids.Core.Ecs
         public IEnumerable<T> GetAll<T>() where T : Component => _components
             .Where(c => c is T)
             .Cast<T>();
+
+        public IEnumerable<Component> GetAll(Type componentType) => _components
+            .Where(componentType.IsInstanceOfType);
     }
 }

@@ -82,16 +82,15 @@ namespace Asteroids.Systems.Game.MessageHandlers
                 return;
             }
             
-            Vector2 radius = Vector2.UnitX * asteroid.Size * 10f;
+            Vector2 radius = Vector2.UnitX * asteroid.Size * 5f;
 
-
-            for (var i = 0; i < asteroid.Size; i++)
+            for (var i = 1; i < asteroid.Size; i++)
             {
                 Vector2 pos = asteroidTransform.Position + radius.Rotate(MathF.PI * 2 / asteroid.Size * i);
 
                 _world.Send(new SpawnAsteroid
                 {
-                    Size = asteroid.Size - 1,
+                    Size = asteroid.Size - i,
                     Position = pos
                 });
             }

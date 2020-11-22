@@ -1,9 +1,9 @@
 ﻿using System;
 using Asteroids.Core;
-using Asteroids.PolygonLoading;
 using Asteroids.Systems.Game.Components;
 using Asteroids.Systems.Game.MessageHandlers;
 using Asteroids.Systems.Game.Messages;
+using Asteroids.Systems.Game.PolygonLoading;
 using Asteroids.Systems.Game.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -55,17 +55,18 @@ namespace Asteroids
                 .Register(new KeyboardSystem(_world))
                 .Register(new LifeTimeSystem(_world))
                 .Register(new DebugRendererSystem(GraphicsDevice, _world))
+                .Register(new PlayerAnimationSystem(Content, _world))
                 .Register(new CollidingSystem(_world));
 
             _world
                 .Register(new AsteroidSpawner(
                     GraphicsDevice,
-                    Content.Load<Texture2D>("asteroid"),
+                    Content,
                     _polygonLoader,
                     _world
                 ))
                 .Register(new BulletSpawner(
-                    Content.Load<Texture2D>("laser"),
+                    Content.Load<Texture2D>("ship/bullet"),
                     _polygonLoader,
                     _world
                 ))
@@ -130,7 +131,7 @@ namespace Asteroids
                 .Attach(new Rigidbody())
                 .Attach(new SpriteRenderer
                 {
-                    Texture = Content.Load<Texture2D>("ship")
+                    Texture = Content.Load<Texture2D>("ship/ship")
                 })
                 .Attach(polygon)
                 .Attach(new Collider(new Polygon2(polygon.Vertices)))

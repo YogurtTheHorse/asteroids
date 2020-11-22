@@ -5,6 +5,7 @@ using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
 using Asteroids.Core.Utils;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.MessageHandlers;
 using Asteroids.Systems.Game.Messages;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -46,7 +47,7 @@ namespace Asteroids.Systems.Game.Systems
 
             if (keyboardSate.IsKeyDown(Keys.Up))
             {
-                rigidbody.Acceleration = new Vector2(1f, 0).Rotate(transform.Rotation) * Acceleration;
+                rigidbody.Acceleration = new Vector2(0f, -1f).Rotate(transform.Rotation) * Acceleration;
             }
             else
             {
@@ -78,7 +79,7 @@ namespace Asteroids.Systems.Game.Systems
                 case Keys.X:
                     World.Send(new SpawnAsteroid
                     {
-                        Size = World.Random.Next(1, 4)
+                        Size = AsteroidSpawner.MaxSize
                     });
                     break;
             }

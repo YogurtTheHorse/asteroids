@@ -1,12 +1,11 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text.Json;
 using Asteroids.Systems.Game.Components;
 using Microsoft.Xna.Framework;
 
-namespace Asteroids.PolygonLoading
+namespace Asteroids.Systems.Game.PolygonLoading
 {
     public class PolygonLoader
     {

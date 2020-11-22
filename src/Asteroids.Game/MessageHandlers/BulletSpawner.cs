@@ -1,9 +1,9 @@
 ﻿using Asteroids.Core;
 using Asteroids.Core.Messaging;
 using Asteroids.Core.Utils;
-using Asteroids.PolygonLoading;
 using Asteroids.Systems.Game.Components;
 using Asteroids.Systems.Game.Messages;
+using Asteroids.Systems.Game.PolygonLoading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SharpMath2;
@@ -40,7 +40,7 @@ namespace Asteroids.Systems.Game.MessageHandlers
                 })
                 .Attach(new Rigidbody
                 {
-                    Velocity = new Vector2(Velocity, 0).Rotate(message.Rotation)
+                    Velocity = new Vector2(0, -Velocity).Rotate(message.Rotation)
                 })
                 .Attach(new SpriteRenderer
                 {
