@@ -10,15 +10,17 @@ namespace Asteroids.Systems.Game.MessageHandlers
     public class RendererSystemSwitcher : TypedMessageHandler<KeyPressed>
     {
         private readonly SpriteRendererSystem _spriteSystem;
+        private readonly BackgroundSystem _backgroundSystem;
         private readonly PolygonRendererSystem _polygonalSystem;
 
-        public RendererSystem EnabledSystem { get; set; } = RendererSystem.Polygonal;
+        public RendererSystem EnabledSystem { get; set; } = RendererSystem.Sprite;
         
 
         public RendererSystemSwitcher(World world)
         {
             _spriteSystem = world.Get<SpriteRendererSystem>();
             _polygonalSystem = world.Get<PolygonRendererSystem>();
+            _backgroundSystem = world.Get<BackgroundSystem>();
             
             RefreshRenderers();
         }
@@ -36,8 +38,9 @@ namespace Asteroids.Systems.Game.MessageHandlers
 
         private void RefreshRenderers()
         {
-            var spriteEnabled = EnabledSystem == RendererSystem.Sprite;
+            bool spriteEnabled = EnabledSystem == RendererSystem.Sprite;
 
+            _backgroundSystem.Enabled = spriteEnabled;
             _spriteSystem.Enabled = spriteEnabled;
             _polygonalSystem.Enabled = !spriteEnabled;
         }

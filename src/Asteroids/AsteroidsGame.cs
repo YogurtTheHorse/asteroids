@@ -56,6 +56,7 @@ namespace Asteroids
                 .Register(new LifeTimeSystem(_world))
                 .Register(new DebugRendererSystem(GraphicsDevice, _world))
                 .Register(new PlayerAnimationSystem(Content, _world))
+                .Register(new EnemiesSpawnerSystem(_world))
                 .Register(new CollidingSystem(_world));
 
             _world
@@ -75,11 +76,6 @@ namespace Asteroids
                 .Register(new RendererSystemSwitcher(_world));
 
             SpawnPlayer();
-
-            _world.Send(new SpawnAsteroid
-            {
-                Size = _world.Random.Next(1, 4)
-            });
         }
 
         private void SetScale(int scale)
