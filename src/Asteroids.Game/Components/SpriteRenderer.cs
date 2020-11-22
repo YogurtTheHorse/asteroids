@@ -1,5 +1,4 @@
 using System.Drawing;
-using System.Reflection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
@@ -31,8 +30,8 @@ namespace Asteroids.Systems.Game.Components
                 return RectangleF.Empty;
             }
 
-            var width = Texture.Width;
-            var height = Texture.Height;
+            var width = TextureRectangle?.Width ?? Texture.Width;
+            var height = TextureRectangle?.Height ?? Texture.Height;
 
             return new RectangleF(
                 (Origin.X - 0.5f) * width - width / 2f,
