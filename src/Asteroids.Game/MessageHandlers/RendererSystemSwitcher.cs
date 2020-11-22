@@ -1,6 +1,5 @@
 ﻿using Asteroids.Core;
 using Asteroids.Core.Messaging;
-using Asteroids.Systems.Game.Components;
 using Asteroids.Systems.Game.Enums;
 using Asteroids.Systems.Game.Messages;
 using Asteroids.Systems.Game.Systems;
@@ -10,10 +9,10 @@ namespace Asteroids.Systems.Game.MessageHandlers
 {
     public class RendererSystemSwitcher : TypedMessageHandler<KeyPressed>
     {
-        private SpriteRendererSystem _spriteSystem;
-        private PolygonRendererSystem _polygonalSystem;
+        private readonly SpriteRendererSystem _spriteSystem;
+        private readonly PolygonRendererSystem _polygonalSystem;
 
-        public RendererSystem EnabledSystem { get; set; } = RendererSystem.Sprite;
+        public RendererSystem EnabledSystem { get; set; } = RendererSystem.Polygonal;
         
 
         public RendererSystemSwitcher(World world)
