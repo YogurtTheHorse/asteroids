@@ -19,6 +19,8 @@ namespace Asteroids
         private PolygonLoader _polygonLoader;
         private GraphicsDeviceManager _graphics;
         private readonly World _world;
+        private RenderTarget2D _nativeRenderTarget;
+        private SpriteBatch _spriteBatch;
 
         public AsteroidsGame()
         {
@@ -27,14 +29,24 @@ namespace Asteroids
 
             _graphics = new GraphicsDeviceManager(this);
             _polygonLoader = new PolygonLoader(Content.RootDirectory);
-            _world = new World();
+            _world = new World(640, 480);
         }
 
         protected override void Initialize()
         {
             base.Initialize();
 
+            SetScale(2);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _nativeRenderTarget = new RenderTarget2D(GraphicsDevice, _world.Width, _world.Height);
+
             _world
+                .Register(new BackgroundSystem(
+                    GraphicsDevice,
+                    Content.Load<Texture2D>("bg/bg"),
+                    Content.Load<Texture2D>("bg/stars"),
+                    _world
+                ))
                 .Register(new SpriteRendererSystem(GraphicsDevice, _world))
                 .Register(new PolygonRendererSystem(GraphicsDevice, _world))
                 .Register(new RigidbodySystem(_world))
@@ -69,6 +81,13 @@ namespace Asteroids
             });
         }
 
+        private void SetScale(int scale)
+        {
+            _graphics.PreferredBackBufferWidth = _world.Width * scale;
+            _graphics.PreferredBackBufferHeight = _world.Height * scale;
+            _graphics.ApplyChanges();
+        }
+
         protected override void Update(GameTime gameTime)
         {
             _world.Update(gameTime);
@@ -78,9 +97,20 @@ namespace Asteroids
 
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.SetRenderTarget(_nativeRenderTarget);
             GraphicsDevice.Clear(Color.Black);
 
             _world.Draw(gameTime);
+
+            GraphicsDevice.SetRenderTarget(null);
+
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+            _spriteBatch.Draw(
+                _nativeRenderTarget,
+                new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height),
+                Color.White
+            );
+            _spriteBatch.End();
 
             Console.WriteLine($"FPS: {1 / gameTime.ElapsedGameTime.TotalSeconds}");
 
@@ -95,7 +125,7 @@ namespace Asteroids
                 .CreateEntity()
                 .Attach(new Transform
                 {
-                    Position = new Vector2(GraphicsDevice.Viewport.Width / 2f, GraphicsDevice.Viewport.Height / 2f)
+                    Position = new Vector2(_world.Width / 2f, _world.Height / 2f)
                 })
                 .Attach(new Rigidbody())
                 .Attach(new SpriteRenderer

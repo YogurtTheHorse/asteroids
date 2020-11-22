@@ -21,8 +21,8 @@ namespace Asteroids.Systems.Game.Systems
 
         public override void Update(Entity entity, GameTime delta)
         {
-            var height = _graphicsDevice.Viewport.Height;
-            var width = _graphicsDevice.Viewport.Width;
+            var height = World.Height;
+            var width = World.Width;
             var transform = entity.Get<Transform>();
 
             if (transform.Position.X > width)

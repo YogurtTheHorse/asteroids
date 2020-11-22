@@ -17,7 +17,7 @@ namespace Asteroids.Systems.Game.Systems
 
         public void Update(GameTime _)
         {
-            var newState = Keyboard.GetState();
+            KeyboardState newState = Keyboard.GetState();
 
             foreach (Keys key in Enum.GetValues(typeof(Keys)))
             {

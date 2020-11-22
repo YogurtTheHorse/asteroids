@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+
 namespace Asteroids.Core.Ecs.Systems
 {
     /// <summary>
@@ -8,6 +10,6 @@ namespace Asteroids.Core.Ecs.Systems
         /// <summary>
         /// Called every draw call.
         /// </summary>
-        void Draw();
+        void Draw(GameTime gameTime);
     }
 }

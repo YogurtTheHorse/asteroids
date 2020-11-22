@@ -33,8 +33,8 @@ namespace Asteroids.Systems.Game.MessageHandlers
         protected override void Handle(SpawnAsteroid message)
         {
             Vector2 position = message.Position ?? new Vector2(
-                (float) _world.Random.NextDouble() * _graphicsDevice.Viewport.Width,
-                (float) _world.Random.NextDouble() * _graphicsDevice.Viewport.Height
+                (float) _world.Random.NextDouble() * _world.Width,
+                (float) _world.Random.NextDouble() * _world.Height
             );
             float directionAngle = (float) (_world.Random.NextDouble() - 0.5d) * 4 * MathF.PI;
             float startingVelocity = MaxVelocity / message.Size;

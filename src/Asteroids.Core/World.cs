@@ -24,10 +24,16 @@ namespace Asteroids.Core
 
         public IEnumerable<Entity> Entities => _entities.AsReadOnly();
         
+        public int Width { get; }
+        
+        public int Height { get; }
+        
         public Random Random { get; }
 
-        public World()
+        public World(int width, int height)
         {
+            Width = width;
+            Height = height;
             _updateSystems = new List<IUpdateSystem>();
             _drawSystems = new List<IDrawSystem>();
             _entities = new List<Entity>();
@@ -121,7 +127,7 @@ namespace Asteroids.Core
                 if (!drawSystem.Enabled) continue;
                 
                 // todo: add error handling
-                drawSystem.Draw();
+                drawSystem.Draw(gameTime);
             }
         }
 

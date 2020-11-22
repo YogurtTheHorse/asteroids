@@ -25,6 +25,30 @@
 /processorParam:TextureFormat=Color
 /build:asteroid.png
 
+#begin bg/bg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:bg/bg.png
+
+#begin bg/stars.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:bg/stars.png
+
 #begin laser.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -36,6 +60,15 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:laser.png
+
+#begin polygons/asteroids/big.json
+/copy:polygons/asteroids/big.json
+
+#begin polygons/bullet.json
+/copy:polygons/bullet.json
+
+#begin polygons/ship.json
+/copy:polygons/ship.json
 
 #begin sfx/explosions/1.wav
 /importer:WavImporter
@@ -165,15 +198,6 @@
 
 #begin sfx/readme.txt
 /copy:sfx/readme.txt
-
-#begin polygons/ship.json
-/copy:polygons/ship.json
-
-#begin polygons/bullet.json
-/copy:polygons/bullet.json
-
-#begin polygons/asteroids/big.json
-/copy:polygons/asteroids/big.json
 
 #begin ship.png
 /importer:TextureImporter

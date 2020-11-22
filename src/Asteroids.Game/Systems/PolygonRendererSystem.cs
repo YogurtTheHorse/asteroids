@@ -11,7 +11,7 @@ namespace Asteroids.Systems.Game.Systems
 
         protected override void DrawAt(Transform transform, PolygonRenderer renderer)
         {
-            var end = renderer.Loop
+            int end = renderer.Loop
                 ? renderer.Vertices.Length
                 : renderer.Vertices.Length - 1;
 

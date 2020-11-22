@@ -3,7 +3,6 @@ using System.Linq;
 using Asteroids.Core;
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
-using Asteroids.Core.Utils;
 using Asteroids.Systems.Game.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,7 +20,7 @@ namespace Asteroids.Systems.Game.Systems
             SpriteBatch = new SpriteBatch(graphicsDevice);
         }
 
-        public void Draw()
+        public void Draw(GameTime _)
         {
             SpriteBatch.Begin();
 
@@ -66,8 +65,8 @@ namespace Asteroids.Systems.Game.Systems
 
         private void DrawRenderer(T renderer, Transform transform)
         {
-            var width = _graphicsDevice.Viewport.Width;
-            var height = _graphicsDevice.Viewport.Height;
+            var width = World.Width;
+            var height = World.Height;
 
             var corners = GetBoundariesCorners(transform, renderer.GetRect());
             var (minX, minY, maxX, maxY) = GetBoundaries(corners);
