@@ -7,7 +7,7 @@ namespace Asteroids.Systems.Game.Components
     {
         public Vector2 Velocity { get; set; } = Vector2.Zero;
 
-        public Vector2 MaxVelocity { get; set; } = new(float.PositiveInfinity);
+        public Vector2 MaxVelocity { get; set; } = new Vector2(float.PositiveInfinity);
 
         public float AngularVelocity { get; set; } = 0f;
         

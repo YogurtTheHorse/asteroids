@@ -166,6 +166,15 @@
 #begin sfx/readme.txt
 /copy:sfx/readme.txt
 
+#begin polygons/ship.json
+/copy:polygons/ship.json
+
+#begin polygons/bullet.json
+/copy:polygons/bullet.json
+
+#begin polygons/asteroids/big.json
+/copy:polygons/asteroids/big.json
+
 #begin ship.png
 /importer:TextureImporter
 /processor:TextureProcessor

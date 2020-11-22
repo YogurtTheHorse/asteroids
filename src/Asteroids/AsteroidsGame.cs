@@ -1,5 +1,6 @@
 ﻿using System;
 using Asteroids.Core;
+using Asteroids.PolygonLoading;
 using Asteroids.Systems.Game.Components;
 using Asteroids.Systems.Game.MessageHandlers;
 using Asteroids.Systems.Game.Messages;
@@ -15,16 +16,18 @@ namespace Asteroids
     /// </summary>
     public class AsteroidsGame : Game
     {
+        private PolygonLoader _polygonLoader;
         private GraphicsDeviceManager _graphics;
         private readonly World _world;
 
         public AsteroidsGame()
         {
-            _graphics = new GraphicsDeviceManager(this);
-            _world = new World();
-
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            _graphics = new GraphicsDeviceManager(this);
+            _polygonLoader = new PolygonLoader(Content.RootDirectory);
+            _world = new World();
         }
 
         protected override void Initialize()
@@ -46,36 +49,20 @@ namespace Asteroids
                 .Register(new AsteroidSpawner(
                     GraphicsDevice,
                     Content.Load<Texture2D>("asteroid"),
+                    _polygonLoader,
                     _world
                 ))
-                .Register(new BulletSpawner(Content.Load<Texture2D>("laser"), _world))
+                .Register(new BulletSpawner(
+                    Content.Load<Texture2D>("laser"),
+                    _polygonLoader,
+                    _world
+                ))
                 .Register(new CollisionHandler(_world))
                 .Register(new SoundManager(Content))
                 .Register(new RendererSystemSwitcher(_world));
 
-            var playerVertices = new[]
-            {
-                new Vector2(15f, 0),
-                new Vector2(-3f, -5f),
-                new Vector2(-3f, 5f),
-            };
+            SpawnPlayer();
 
-            _world
-                .CreateEntity()
-                .Attach(new Transform())
-                .Attach(new Rigidbody())
-                .Attach(new SpriteRenderer
-                {
-                    Texture = Content.Load<Texture2D>("ship")
-                })
-                .Attach(new PolygonRenderer()
-                {
-                    Vertices = playerVertices,
-                    Loop = true
-                })
-                .Attach(new Collider(new Polygon2(playerVertices)))
-                .Attach(new Player());
-            
             _world.Send(new SpawnAsteroid
             {
                 Size = _world.Random.Next(1, 4)
@@ -85,19 +72,39 @@ namespace Asteroids
         protected override void Update(GameTime gameTime)
         {
             _world.Update(gameTime);
-            
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            
+
             _world.Draw(gameTime);
-            
+
             Console.WriteLine($"FPS: {1 / gameTime.ElapsedGameTime.TotalSeconds}");
 
             base.Draw(gameTime);
+        }
+
+        private void SpawnPlayer()
+        {
+            PolygonRenderer polygon = _polygonLoader.Load("polygons/ship");
+
+            _world
+                .CreateEntity()
+                .Attach(new Transform
+                {
+                    Position = new Vector2(GraphicsDevice.Viewport.Width / 2f, GraphicsDevice.Viewport.Height / 2f)
+                })
+                .Attach(new Rigidbody())
+                .Attach(new SpriteRenderer
+                {
+                    Texture = Content.Load<Texture2D>("ship")
+                })
+                .Attach(polygon)
+                .Attach(new Collider(new Polygon2(polygon.Vertices)))
+                .Attach(new Player());
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Asteroids.Core;
 using Asteroids.Core.Messaging;
 using Asteroids.Core.Utils;
+using Asteroids.PolygonLoading;
 using Asteroids.Systems.Game.Components;
 using Asteroids.Systems.Game.Messages;
 using Microsoft.Xna.Framework;
@@ -16,16 +17,20 @@ namespace Asteroids.Systems.Game.MessageHandlers
         public float Velocity { get; set; } = 500f;
 
         private readonly Texture2D _bulletTexture;
+        private readonly PolygonLoader _polygonLoader;
         private readonly World _world;
 
-        public BulletSpawner(Texture2D bulletTexture, World world)
+        public BulletSpawner(Texture2D bulletTexture, PolygonLoader polygonLoader, World world)
         {
             _bulletTexture = bulletTexture;
+            _polygonLoader = polygonLoader;
             _world = world;
         }
 
         protected override void Handle(SpawnBullet message)
         {
+            PolygonRenderer renderer = _polygonLoader.Load("polygons/bullet");
+            
             _world
                 .CreateEntity()
                 .Attach(new Transform
@@ -41,17 +46,8 @@ namespace Asteroids.Systems.Game.MessageHandlers
                 {
                     Texture = _bulletTexture
                 })
-                .Attach(new PolygonRenderer
-                {
-                    Vertices = new[] {Vector2.Zero, new Vector2(-5f, 0)}
-                })
-                .Attach(new Collider(new Polygon2(new Vector2[]
-                {
-                    new(-1, 0),
-                    new(0, 1f),
-                    new(1f, 0),
-                    new(0, -1),
-                })))
+                .Attach(renderer)
+                .Attach(new Collider(new Polygon2(renderer.Vertices)))
                 .Attach(new Lifetime(BulletLifeTime))
                 .Attach(new Bullet());
 
