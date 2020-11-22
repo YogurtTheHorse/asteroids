@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Asteroids.Core;
 using Asteroids.Core.Messaging;
 using Asteroids.Core.Utils;
@@ -6,6 +7,7 @@ using Asteroids.Systems.Game.Components;
 using Asteroids.Systems.Game.Messages;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SharpMath2;
 
 namespace Asteroids.Systems.Game.MessageHandlers
 {
@@ -30,15 +32,39 @@ namespace Asteroids.Systems.Game.MessageHandlers
             var y = (float) _world.Random.NextDouble() * _graphicsDevice.Viewport.Height;
             var directionAngle = (float) (_world.Random.NextDouble() - 0.5d) * 4 * MathF.PI;
             var startingVelocity = MaxVelocity / message.Size;
+            var scale = message.Size / 8f;
             
             // TODO: Check is asteroid intersect ship.
+
+            var vertices = new[]
+            {
+                new Vector2(-127, -7),
+                new Vector2(-92, -51),
+                new Vector2(-72, -88),
+                new Vector2(-61, -92),
+                new Vector2(-41, -107),
+                new Vector2(22, -107),
+                new Vector2(39, -102),
+                new Vector2(70, -74),
+                new Vector2(94, -76),
+                new Vector2(125, -12),
+                new Vector2(126, 9),
+                new Vector2(90, 56),
+                new Vector2(80, 62),
+                new Vector2(64, 90),
+                new Vector2(39, 101),
+                new Vector2(25, 109),
+                new Vector2(-15, 101),
+                new Vector2(-97, 60),
+                new Vector2(-127, 22)
+            };
             
             _world
                 .CreateEntity()
                 .Attach(new Transform
                 {
                     Position = new Vector2(x, y),
-                    Scale = message.Size / 8f
+                    Scale = scale
                 })
                 .Attach(new Rigidbody
                 {
@@ -49,32 +75,12 @@ namespace Asteroids.Systems.Game.MessageHandlers
                 {
                     Texture = _asteroidTexture
                 })
-                .Attach(new PolygonRenderer()
+                .Attach(new PolygonRenderer
                 {
-                    Vertices = new []
-                    {
-                        new Vector2(-127, -7),
-                        new Vector2(-92, -51),
-                        new Vector2(-72, -88),
-                        new Vector2(-61, -92),
-                        new Vector2(-41, -107),
-                        new Vector2(22, -107),
-                        new Vector2(39, -102),
-                        new Vector2(70, -74),
-                        new Vector2(94, -76),
-                        new Vector2(125, -12),
-                        new Vector2(126, 9),
-                        new Vector2(90, 56),
-                        new Vector2(80, 62),
-                        new Vector2(64, 90),
-                        new Vector2(39, 101),
-                        new Vector2(25, 109),
-                        new Vector2(-15, 101),
-                        new Vector2(-97, 60),
-                        new Vector2(-127, 22)
-                    },
+                    Vertices = vertices,
                     Loop = true
                 })
+                .Attach(new Collider(new Polygon2(vertices.Select(v => v * scale).ToArray())))
                 .Attach(new Asteroid());
         }
     }

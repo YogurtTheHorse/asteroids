@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Asteroids.Core\Asteroids.Core.csproj" />
+        <ProjectReference Include="..\Asteroids.Core\Asteroids.Core.csproj" />
+        <ProjectReference Include="..\MonoGame.SharpMath\MonoGame.SharpMath.csproj" />
     </ItemGroup>
 </Project>

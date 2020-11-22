@@ -6,6 +6,7 @@ using Asteroids.Systems.Game.Messages;
 using Asteroids.Systems.Game.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SharpMath2;
 
 namespace Asteroids
 {
@@ -38,7 +39,8 @@ namespace Asteroids
                 .Register(new KeepInScreenSystem(GraphicsDevice, _world))
                 .Register(new KeyboardSystem(_world))
                 .Register(new LifeTimeSystem(_world))
-                .Register(new DebugRendererSystem(GraphicsDevice, _world));
+                .Register(new DebugRendererSystem(GraphicsDevice, _world))
+                .Register(new CollidingSystem(_world));
 
             _world
                 .Register(new AsteroidSpawner(
@@ -47,7 +49,15 @@ namespace Asteroids
                     _world
                 ))
                 .Register(new BulletSpawner(Content.Load<Texture2D>("laser"), _world))
+                .Register(new CollisionHandler())
                 .Register(new RendererSystemSwitcher(_world));
+
+            var playerVertices = new[]
+            {
+                new Vector2(25f, 0),
+                new Vector2(-5f, -10f),
+                new Vector2(-5f, 10f),
+            };
 
             _world
                 .CreateEntity()
@@ -59,14 +69,10 @@ namespace Asteroids
                 })
                 .Attach(new PolygonRenderer()
                 {
-                    Vertices = new []
-                    {
-                        new Vector2(25f, 0),
-                        new Vector2(-5f, -10f),
-                        new Vector2(-5f, 10f),
-                    },
+                    Vertices = playerVertices,
                     Loop = true
                 })
+                .Attach(new Collider(new Polygon2(playerVertices)))
                 .Attach(new Player());
             
             _world.Send(new SpawnAsteroid

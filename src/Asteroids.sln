@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteroids.Core.Tests", "Ast
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharpMath2", "..\submodules\SharpMath2\SharpMath2.shproj", "{53290E9B-7A54-4098-AB3D-E936D93BDF97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.SharpMath", "MonoGame.SharpMath\MonoGame.SharpMath.csproj", "{C53EEC84-72C2-4DF7-A92E-E56E3FCEE242}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,5 +34,9 @@ Global
 		{D752E618-29B5-4A71-9240-10171584390C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D752E618-29B5-4A71-9240-10171584390C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D752E618-29B5-4A71-9240-10171584390C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C53EEC84-72C2-4DF7-A92E-E56E3FCEE242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C53EEC84-72C2-4DF7-A92E-E56E3FCEE242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C53EEC84-72C2-4DF7-A92E-E56E3FCEE242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C53EEC84-72C2-4DF7-A92E-E56E3FCEE242}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
