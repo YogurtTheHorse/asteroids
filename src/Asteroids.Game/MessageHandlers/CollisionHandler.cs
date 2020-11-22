@@ -12,7 +12,7 @@ namespace Asteroids.Systems.Game.MessageHandlers
     public class CollisionHandler : TypedMessageHandler<Collision>
     {
         public float ParticlesSpeed { get; set; } = 40;
-        
+
         private readonly World _world;
 
         public CollisionHandler(World world)
@@ -47,8 +47,11 @@ namespace Asteroids.Systems.Game.MessageHandlers
             _world.Destroy(other);
             _world.Destroy(bullet);
 
+            var asteroid = other.Get<Asteroid>();
 
-            for (int i = 0; i < 3 * other.Get<Asteroid>().Size; i++)
+            SpawnAsteroidParts(other, asteroid);
+
+            for (var i = 0; i < 3 * asteroid.Size; i++)
             {
                 _world
                     .CreateEntity()
@@ -62,7 +65,8 @@ namespace Asteroids.Systems.Game.MessageHandlers
                     })
                     .Attach(new Rigidbody
                     {
-                        Velocity = Vector2.UnitX.Rotate((float)_world.Random.NextDouble() * MathF.PI * 2) * ParticlesSpeed
+                        Velocity = Vector2.UnitX.Rotate((float) _world.Random.NextDouble() * MathF.PI * 2) *
+                                   ParticlesSpeed
                     })
                     .Attach(new Lifetime(1f));
             }
@@ -70,8 +74,36 @@ namespace Asteroids.Systems.Game.MessageHandlers
             _world.Send(new PlaySound("sfx/explosions/3"));
         }
 
+        private void SpawnAsteroidParts(Entity other, Asteroid asteroid)
+        {
+            var asteroidTransform = other.Get<Transform>();
+            if (asteroid.Size == 1)
+            {
+                return;
+            }
+            
+            Vector2 radius = Vector2.UnitX * asteroid.Size * 10f;
+
+
+            for (var i = 0; i < asteroid.Size; i++)
+            {
+                Vector2 pos = asteroidTransform.Position + radius.Rotate(MathF.PI * 2 / asteroid.Size * i);
+
+                _world.Send(new SpawnAsteroid
+                {
+                    Size = asteroid.Size - 1,
+                    Position = pos
+                });
+            }
+        }
+
         private void PlayerCollision(Entity player, Entity other)
         {
+            if (!other.Has<Asteroid>()) return;
+
+            _world.Destroy(player);
+
+            _world.Send(new PlaySound("sfx/misc/error"));
         }
     }
 }

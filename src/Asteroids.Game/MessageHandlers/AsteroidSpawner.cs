@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Asteroids.Core;
+using Asteroids.Core.Ecs;
 using Asteroids.Core.Messaging;
 using Asteroids.Core.Utils;
 using Asteroids.Systems.Game.Components;
@@ -28,11 +29,13 @@ namespace Asteroids.Systems.Game.MessageHandlers
         
         protected override void Handle(SpawnAsteroid message)
         {
-            var x = (float) _world.Random.NextDouble() * _graphicsDevice.Viewport.Width;
-            var y = (float) _world.Random.NextDouble() * _graphicsDevice.Viewport.Height;
-            var directionAngle = (float) (_world.Random.NextDouble() - 0.5d) * 4 * MathF.PI;
-            var startingVelocity = MaxVelocity / message.Size;
-            var scale = message.Size / 8f;
+            Vector2 position = message.Position ?? new Vector2(
+                (float) _world.Random.NextDouble() * _graphicsDevice.Viewport.Width,
+                (float) _world.Random.NextDouble() * _graphicsDevice.Viewport.Height
+            );
+            float directionAngle = (float) (_world.Random.NextDouble() - 0.5d) * 4 * MathF.PI;
+            float startingVelocity = MaxVelocity / message.Size;
+            float scale = message.Size / 8f;
             
             // TODO: Check is asteroid intersect ship.
 
@@ -63,7 +66,7 @@ namespace Asteroids.Systems.Game.MessageHandlers
                 .CreateEntity()
                 .Attach(new Transform
                 {
-                    Position = new Vector2(x, y),
+                    Position = position,
                     Scale = scale
                 })
                 .Attach(new Rigidbody
@@ -81,7 +84,10 @@ namespace Asteroids.Systems.Game.MessageHandlers
                     Loop = true
                 })
                 .Attach(new Collider(new Polygon2(vertices.Select(v => v * scale).ToArray())))
-                .Attach(new Asteroid());
+                .Attach(new Asteroid
+                {
+                    Size = message.Size
+                });
         }
     }
 }

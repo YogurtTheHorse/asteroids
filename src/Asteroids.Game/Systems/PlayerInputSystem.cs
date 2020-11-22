@@ -56,7 +56,13 @@ namespace Asteroids.Systems.Game.Systems
 
         private void KeyPressedHandler(KeyPressed message)
         {
-            Entity player = World.Entities.First(f => f.Has<Player>());
+            Entity? player = World.Entities.FirstOrDefault(f => f.Has<Player>());
+
+            if (player is null)
+            {
+                return;
+            }
+            
             var transform = player.Get<Transform>();
 
             switch (message.Key)

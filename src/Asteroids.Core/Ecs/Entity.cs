@@ -20,7 +20,7 @@ namespace Asteroids.Core.Ecs
         /// <summary>
         /// Is entity marked as destroyed and will be removed from world after this frame.
         /// </summary>
-        public bool IsDestroyed { get; set; }
+        public bool IsDestroyed { get; internal set; }
         
         private readonly List<Component> _components;
 
