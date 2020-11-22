@@ -10,6 +10,8 @@ namespace Asteroids.Systems.Game.Components
         public Collider(Polygon2 shape)
         {
             Shape = shape;
+
+            Require<Transform>();
         }
     }
 }

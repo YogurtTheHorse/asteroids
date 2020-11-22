@@ -57,6 +57,9 @@ namespace Asteroids
                 .Register(new DebugRendererSystem(GraphicsDevice, _world))
                 .Register(new PlayerAnimationSystem(Content, _world))
                 .Register(new EnemiesSpawnerSystem(_world))
+                .Register(new ScoreSystem(_world))
+                .Register(new ExplosionsSpawner(_world))
+                .Register(new FontRendererSystem(Content.Load<SpriteFont>("fonts/Eneminds Bold"), GraphicsDevice, _world))
                 .Register(new CollidingSystem(_world));
 
             _world
@@ -109,8 +112,6 @@ namespace Asteroids
             );
             _spriteBatch.End();
 
-            Console.WriteLine($"FPS: {1 / gameTime.ElapsedGameTime.TotalSeconds}");
-
             base.Draw(gameTime);
         }
 
@@ -132,6 +133,15 @@ namespace Asteroids
                 .Attach(polygon)
                 .Attach(new Collider(new Polygon2(polygon.Vertices)))
                 .Attach(new Player());
+
+            _world
+                .CreateEntity()
+                .Attach(new Transform
+                {
+                    Position = new Vector2(10f)
+                })
+                .Attach(new LabelComponent())
+                .Attach(new ScoreComponent());
         }
     }
 }

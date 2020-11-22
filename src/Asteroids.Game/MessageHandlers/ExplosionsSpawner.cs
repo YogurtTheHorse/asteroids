@@ -21,6 +21,8 @@ namespace Asteroids.Systems.Game.MessageHandlers
         
         protected override void Handle(Explosion message)
         {
+            _world.Send(new PlaySound("sfx/explosions/3"));
+            
             for (var i = 0; i < 3 * message.Size; i++)
             {
                 _world

@@ -48,13 +48,17 @@ namespace Asteroids.Systems.Game.MessageHandlers
             var asteroid = other.Get<Asteroid>();
 
             SpawnAsteroidParts(other, asteroid);
+            
             _world.Send(new Explosion
             {
                 Position = bullet.Get<Transform>().Position,
                 Size = asteroid.Size
             });
-
-            _world.Send(new PlaySound("sfx/explosions/3"));
+            
+            _world
+                .Entities
+                .With<ScoreComponent>()
+                .ForEach(s => s.Get<ScoreComponent>().Score += 10 * asteroid.Size);
         }
 
         private void SpawnAsteroidParts(Entity other, Asteroid asteroid)
