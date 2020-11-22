@@ -43,6 +43,17 @@ namespace Asteroids.Systems.Game.Systems
             .Select(transform.ToWorld)
             .ToArray();
 
+        protected static (float minX, float minY, float maxX, float maxY) GetBoundaries(Vector2[] corners)
+        {
+            var minX = corners.Min(v => v.X);
+            var minY = corners.Min(v => v.Y);
+            var maxX = corners.Max(v => v.X);
+            var maxY = corners.Max(v => v.Y);
+            return (minX, minY, maxX, maxY);
+        }
+
+        protected abstract void DrawAt(Transform transform, T renderer);
+
         private void DrawEntity(Entity entity)
         {
             var transform = entity.Get<Transform>();
@@ -85,16 +96,5 @@ namespace Asteroids.Systems.Game.Systems
 
             // TODO: Add corner cases
         }
-
-        private static (float minX, float minY, float maxX, float maxY) GetBoundaries(Vector2[] corners)
-        {
-            var minX = corners.Min(v => v.X);
-            var minY = corners.Min(v => v.Y);
-            var maxX = corners.Max(v => v.X);
-            var maxY = corners.Max(v => v.Y);
-            return (minX, minY, maxX, maxY);
-        }
-
-        protected abstract void DrawAt(Transform transform, T renderer);
     }
 }

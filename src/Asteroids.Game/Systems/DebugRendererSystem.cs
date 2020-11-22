@@ -24,6 +24,12 @@ namespace Asteroids.Systems.Game.Systems
         protected override void DrawAt(Transform transform, Renderer renderer)
         {
             var corners = GetBoundariesCorners(transform, renderer.GetRect());
+            var (minX, minY, maxX, maxY) = GetBoundaries(corners);
+
+            SpriteBatch.DrawRectangle(
+                new Rectangle((int)minX, (int)minY, (int)(maxX - minX), (int)(maxY - minY)),
+                Color.Yellow
+            );
 
             for (var i = 1; i <= corners.Length; i++)
             {
