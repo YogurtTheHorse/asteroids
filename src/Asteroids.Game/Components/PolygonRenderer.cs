@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Linq;
 using Microsoft.Xna.Framework;
 
 namespace Asteroids.Systems.Game.Components
@@ -22,6 +24,14 @@ namespace Asteroids.Systems.Game.Components
 
         public PolygonRenderer() => Require<Transform>();
 
-        public override Vector2 GetBoundaries() => Vector2.Zero;
+        public override RectangleF GetRect()
+        {
+            var minX = Vertices.Min(v => v.X);
+            var minY = Vertices.Min(v => v.Y);
+            var maxX = Vertices.Max(v => v.X);
+            var maxY = Vertices.Max(v => v.Y);
+
+            return RectangleF.FromLTRB(minX, maxY, maxX, minY);
+        }
     }
 }

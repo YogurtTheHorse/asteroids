@@ -16,13 +16,16 @@ namespace Asteroids.Systems.Game.Components
 
         public float Rotation { get; set; }
 
-        public Vector2 ToWorld(Vector2 local) => Position + local.Rotate(Rotation);
+        public float Scale { get; set; } = 1f;
+
+        public Vector2 ToWorld(Vector2 local) => Position + (local * Scale).Rotate(Rotation);
 
         public Transform Translate(Vector2 v) =>
             new()
             {
                 Position = Position + v,
-                Rotation = Rotation
+                Rotation = Rotation,
+                Scale = Scale
             };
 
         public Transform Translate(float x, float y) => Translate(new Vector2(x, y));

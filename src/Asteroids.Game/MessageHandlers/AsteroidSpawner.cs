@@ -37,7 +37,8 @@ namespace Asteroids.Systems.Game.MessageHandlers
                 .CreateEntity()
                 .Attach(new Transform
                 {
-                    Position = new Vector2(x, y)
+                    Position = new Vector2(x, y),
+                    Scale = message.Size / 8f
                 })
                 .Attach(new Rigidbody
                 {
@@ -46,8 +47,33 @@ namespace Asteroids.Systems.Game.MessageHandlers
                 })
                 .Attach(new SpriteRenderer
                 {
-                    Texture = _asteroidTexture,
-                    Scale = message.Size / 4f
+                    Texture = _asteroidTexture
+                })
+                .Attach(new PolygonRenderer()
+                {
+                    Vertices = new []
+                    {
+                        new Vector2(-127, -7),
+                        new Vector2(-92, -51),
+                        new Vector2(-72, -88),
+                        new Vector2(-61, -92),
+                        new Vector2(-41, -107),
+                        new Vector2(22, -107),
+                        new Vector2(39, -102),
+                        new Vector2(70, -74),
+                        new Vector2(94, -76),
+                        new Vector2(125, -12),
+                        new Vector2(126, 9),
+                        new Vector2(90, 56),
+                        new Vector2(80, 62),
+                        new Vector2(64, 90),
+                        new Vector2(39, 101),
+                        new Vector2(25, 109),
+                        new Vector2(-15, 101),
+                        new Vector2(-97, 60),
+                        new Vector2(-127, 22)
+                    },
+                    Loop = true
                 })
                 .Attach(new Asteroid());
         }

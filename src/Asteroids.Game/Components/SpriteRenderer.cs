@@ -1,5 +1,8 @@
+using System.Drawing;
+using System.Reflection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace Asteroids.Systems.Game.Components
 {
@@ -17,14 +20,26 @@ namespace Asteroids.Systems.Game.Components
         /// </summary>
         public Vector2 Origin { get; set; } = new(0.5f);
 
-        public float Scale { get; set; } = 1f;
-
         public float LayerDepth { get; set; }
 
         public SpriteEffects Effects { get; set; } = SpriteEffects.None;
 
-        public override Vector2 GetBoundaries() => Texture is null
-            ? Vector2.Zero
-            : new Vector2(Texture.Width, Texture.Height) * Scale;
+        public override RectangleF GetRect()
+        {
+            if (Texture is null)
+            {
+                return RectangleF.Empty;
+            }
+
+            var width = Texture.Width;
+            var height = Texture.Height;
+
+            return new RectangleF(
+                (Origin.X - 0.5f) * width - width / 2f,
+                (Origin.Y - 0.5f) * height - height / 2f,
+                width,
+                height
+            );
+        }
     }
 }

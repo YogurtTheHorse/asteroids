@@ -36,14 +36,18 @@ namespace Asteroids
                 .Register(new RigidbodySystem(_world))
                 .Register(new PlayerSystem(_world))
                 .Register(new KeepInScreenSystem(GraphicsDevice, _world))
-                .Register(new KeyboardSystem(_world));
+                .Register(new KeyboardSystem(_world))
+                .Register(new LifeTimeSystem(_world))
+                .Register(new DebugRendererSystem(GraphicsDevice, _world));
 
             _world
                 .Register(new AsteroidSpawner(
                     GraphicsDevice,
                     Content.Load<Texture2D>("asteroid"),
                     _world
-                ));
+                ))
+                .Register(new BulletSpawner(Content.Load<Texture2D>("laser"), _world))
+                .Register(new RendererSystemSwitcher(_world));
 
             _world
                 .CreateEntity()
@@ -53,9 +57,19 @@ namespace Asteroids
                 {
                     Texture = Content.Load<Texture2D>("ship")
                 })
+                .Attach(new PolygonRenderer()
+                {
+                    Vertices = new []
+                    {
+                        new Vector2(25f, 0),
+                        new Vector2(-5f, -10f),
+                        new Vector2(-5f, 10f),
+                    },
+                    Loop = true
+                })
                 .Attach(new Player());
             
-            _world.Send(new SpawnAsteroid()
+            _world.Send(new SpawnAsteroid
             {
                 Size = _world.Random.Next(1, 4)
             });

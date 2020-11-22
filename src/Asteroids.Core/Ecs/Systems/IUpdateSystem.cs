@@ -5,7 +5,7 @@ namespace Asteroids.Core.Ecs.Systems
     /// <summary>
     /// System for handling updates.
     /// </summary>
-    public interface IUpdateSystem
+    public interface IUpdateSystem : IBaseSystem
     {
         /// <summary>
         /// Called every frame.

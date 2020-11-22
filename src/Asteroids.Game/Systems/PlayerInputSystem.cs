@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Asteroids.Core;
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
@@ -45,7 +46,7 @@ namespace Asteroids.Systems.Game.Systems
 
             if (keyboardSate.IsKeyDown(Keys.Up))
             {
-                rigidbody.Acceleration = new Vector2(0, 1f).Rotate(transform.Rotation) * Acceleration;
+                rigidbody.Acceleration = new Vector2(1f, 0).Rotate(transform.Rotation) * Acceleration;
             }
             else
             {
@@ -55,9 +56,26 @@ namespace Asteroids.Systems.Game.Systems
 
         private void KeyPressedHandler(KeyPressed message)
         {
-            if (message.Key != Keys.X) return;
+            Entity player = World.Entities.First(f => f.Has<Player>());
+            var transform = player.Get<Transform>();
 
-            World.Send(new SpawnAsteroid {Size = World.Random.Next(1, 4)});
+            switch (message.Key)
+            {
+                case Keys.Z:
+                    World.Send(new SpawnBullet
+                    {
+                        Position = transform.Position,
+                        Rotation = transform.Rotation
+                    });
+                    break;
+
+                case Keys.X:
+                    World.Send(new SpawnAsteroid
+                    {
+                        Size = World.Random.Next(1, 4)
+                    });
+                    break;
+            }
         }
     }
 }

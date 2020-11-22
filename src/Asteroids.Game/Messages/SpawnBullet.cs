@@ -6,5 +6,7 @@ namespace Asteroids.Systems.Game.Messages
     public class SpawnBullet : Message
     {
         public Vector2 Position { get; set; }
+        
+        public float Rotation { get; set; }
     }
 }

@@ -4,9 +4,7 @@ namespace Asteroids.Core.Ecs.Systems
 {
     public abstract class EntityProcessingSystem<T> : AbstractSystem, IUpdateSystem where T : Component
     {
-        public EntityProcessingSystem(World world) : base(world)
-        {
-        }
+        public EntityProcessingSystem(World world) : base(world) { }
 
         public void Update(GameTime delta) => World
             .Entities

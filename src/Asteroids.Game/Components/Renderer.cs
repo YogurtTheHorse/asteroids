@@ -1,5 +1,6 @@
-﻿using Asteroids.Core.Ecs;
-using Microsoft.Xna.Framework;
+﻿using System.Drawing;
+using Asteroids.Core.Ecs;
+using Color = Microsoft.Xna.Framework.Color;
 
 namespace Asteroids.Systems.Game.Components
 {
@@ -15,6 +16,6 @@ namespace Asteroids.Systems.Game.Components
 
         public Renderer() => Require<Transform>();
 
-        public abstract Vector2 GetBoundaries();
+        public abstract RectangleF GetRect();
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
+using Asteroids.Core.Exceptions;
 using Asteroids.Core.Messaging;
 using Microsoft.Xna.Framework;
 
@@ -97,8 +98,19 @@ namespace Asteroids.Core
 
             foreach (IUpdateSystem updateSystem in _updateSystems)
             {
+                if (!updateSystem.Enabled) continue;
+                
                 // todo: add error handling
                 updateSystem.Update(gameTime);
+            }
+
+            for (int i = 0; i < _entities.Count; i++)
+            {
+                if (_entities[i].IsDestroyed)
+                {
+                    _entities.RemoveAt(i);
+                    i--;
+                }
             }
         }
 
@@ -106,6 +118,8 @@ namespace Asteroids.Core
         {
             foreach (IDrawSystem drawSystem in _drawSystems)
             {
+                if (!drawSystem.Enabled) continue;
+                
                 // todo: add error handling
                 drawSystem.Draw();
             }
@@ -114,6 +128,39 @@ namespace Asteroids.Core
         public void Send(Message message)
         {
             _messagesQueue.Enqueue(message);
+        }
+
+        public void Destroy(int entityId)
+        {
+            var entity = _entities.FirstOrDefault(e => e.Id == entityId);
+
+            if (entity is null)
+            {
+                throw new EntityNotFoundException(entityId);
+            }
+
+            entity.IsDestroyed = true;
+        }
+
+        public T Get<T>() where T : IBaseSystem
+        {
+            foreach (IDrawSystem drawSystem in _drawSystems)
+            {
+                if (drawSystem is T typed)
+                {
+                    return typed;
+                } 
+            }
+            
+            foreach (IUpdateSystem updateSystem in _updateSystems)
+            {
+                if (updateSystem is T typed)
+                {
+                    return typed;
+                } 
+            }
+
+            throw new CoreException($"System {typeof(T).Name} is not present in world.");
         }
     }
 }

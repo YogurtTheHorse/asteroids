@@ -17,6 +17,11 @@ namespace Asteroids.Core.Ecs
         /// </summary>
         public int Id { get; }
         
+        /// <summary>
+        /// Is entity marked as destroyed and will be removed from world after this frame.
+        /// </summary>
+        public bool IsDestroyed { get; set; }
+        
         private readonly List<Component> _components;
 
         public Entity(int id)
@@ -132,5 +137,9 @@ namespace Asteroids.Core.Ecs
 
             return null;
         }
+
+        public IEnumerable<T> GetAll<T>() where T : Component => _components
+            .Where(c => c is T)
+            .Cast<T>();
     }
 }

@@ -25,7 +25,7 @@ namespace Asteroids.Systems.Game.Systems
                 sprite.Color,
                 transform.Rotation,
                 origin,
-                sprite.Scale,
+                transform.Scale,
                 sprite.Effects,
                 sprite.LayerDepth
             );

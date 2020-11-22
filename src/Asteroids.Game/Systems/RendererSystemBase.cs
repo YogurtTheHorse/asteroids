@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Drawing;
+using System.Linq;
 using Asteroids.Core;
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
@@ -32,30 +33,33 @@ namespace Asteroids.Systems.Game.Systems
             SpriteBatch.End();
         }
 
-        private Vector2[] GetBoundariesCorners(Vector2 center, Vector2 boundaries, float angle) => new[]
+        protected Vector2[] GetBoundariesCorners(Transform transform, RectangleF boundaries) => new[]
             {
-                new Vector2(-boundaries.X / 2, -boundaries.Y / 2),
-                new Vector2(boundaries.X / 2, -boundaries.Y / 2),
-                new Vector2(-boundaries.X / 2, boundaries.Y / 2),
-                new Vector2(boundaries.X / 2, boundaries.Y / 2)
+                new Vector2(boundaries.Right, boundaries.Bottom),
+                new Vector2(boundaries.Left, boundaries.Bottom),
+                new Vector2(boundaries.Left, boundaries.Top),
+                new Vector2(boundaries.Right, boundaries.Top),
             }
-            .Select(v => center + v.Rotate(angle))
+            .Select(transform.ToWorld)
             .ToArray();
 
         private void DrawEntity(Entity entity)
         {
+            var transform = entity.Get<Transform>();
+            
+            foreach (T renderer in entity.GetAll<T>())
+            {
+                DrawRenderer(renderer, transform);
+            }
+        }
+
+        private void DrawRenderer(T renderer, Transform transform)
+        {
             var width = _graphicsDevice.Viewport.Width;
             var height = _graphicsDevice.Viewport.Height;
 
-            var renderer = entity.Get<T>();
-            var transform = entity.Get<Transform>();
-            var boundaries = renderer.GetBoundaries();
-            var corners = GetBoundariesCorners(transform.Position, boundaries, transform.Rotation);
-
-            var minX = corners.Min(v => v.X);
-            var minY = corners.Min(v => v.Y);
-            var maxX = corners.Max(v => v.X);
-            var maxY = corners.Max(v => v.Y);
+            var corners = GetBoundariesCorners(transform, renderer.GetRect());
+            var (minX, minY, maxX, maxY) = GetBoundaries(corners);
 
             DrawAt(transform, renderer);
 
@@ -80,6 +84,15 @@ namespace Asteroids.Systems.Game.Systems
             }
 
             // TODO: Add corner cases
+        }
+
+        private static (float minX, float minY, float maxX, float maxY) GetBoundaries(Vector2[] corners)
+        {
+            var minX = corners.Min(v => v.X);
+            var minY = corners.Min(v => v.Y);
+            var maxX = corners.Max(v => v.X);
+            var maxY = corners.Max(v => v.Y);
+            return (minX, minY, maxX, maxY);
         }
 
         protected abstract void DrawAt(Transform transform, T renderer);
