@@ -25,18 +25,6 @@
 /processorParam:TextureFormat=Color
 /build:asteroid.png
 
-#begin ship.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:ship.png
-
 #begin laser.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -48,4 +36,145 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:laser.png
+
+#begin sfx/explosions/1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/explosions/1.wav
+
+#begin sfx/explosions/2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/explosions/2.wav
+
+#begin sfx/explosions/3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/explosions/3.wav
+
+#begin sfx/explosions/4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/explosions/4.wav
+
+#begin sfx/explosions/5.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/explosions/5.wav
+
+#begin sfx/explosions/6.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/explosions/6.wav
+
+#begin sfx/explosions/7.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/explosions/7.wav
+
+#begin sfx/lasers/1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/lasers/1.wav
+
+#begin sfx/lasers/2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/lasers/2.wav
+
+#begin sfx/lasers/3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/lasers/3.wav
+
+#begin sfx/lasers/4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/lasers/4.wav
+
+#begin sfx/lasers/5.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/lasers/5.wav
+
+#begin sfx/lasers/6.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/lasers/6.wav
+
+#begin sfx/lasers/7.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/lasers/7.wav
+
+#begin sfx/misc/alarm.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/misc/alarm.wav
+
+#begin sfx/misc/blastoff.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/misc/blastoff.wav
+
+#begin sfx/misc/error.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/misc/error.wav
+
+#begin sfx/misc/fall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/misc/fall.wav
+
+#begin sfx/misc/flyby.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/misc/flyby.wav
+
+#begin sfx/misc/laserd.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/misc/laserd.wav
+
+#begin sfx/misc/sine.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/misc/sine.wav
+
+#begin sfx/readme.txt
+/copy:sfx/readme.txt
+
+#begin ship.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ship.png
 
