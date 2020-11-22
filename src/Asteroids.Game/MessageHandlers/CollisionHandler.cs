@@ -11,8 +11,6 @@ namespace Asteroids.Systems.Game.MessageHandlers
 {
     public class CollisionHandler : TypedMessageHandler<Collision>
     {
-        public float ParticlesSpeed { get; set; } = 40;
-
         private readonly World _world;
 
         public CollisionHandler(World world)
@@ -50,26 +48,11 @@ namespace Asteroids.Systems.Game.MessageHandlers
             var asteroid = other.Get<Asteroid>();
 
             SpawnAsteroidParts(other, asteroid);
-
-            for (var i = 0; i < 3 * asteroid.Size; i++)
+            _world.Send(new Explosion
             {
-                _world
-                    .CreateEntity()
-                    .Attach(new Transform()
-                    {
-                        Position = bullet.Get<Transform>().Position
-                    })
-                    .Attach(new PolygonRenderer
-                    {
-                        Vertices = new[] {Vector2.Zero, Vector2.UnitX}
-                    })
-                    .Attach(new Rigidbody
-                    {
-                        Velocity = Vector2.UnitX.Rotate((float) _world.Random.NextDouble() * MathF.PI * 2) *
-                                   ParticlesSpeed
-                    })
-                    .Attach(new Lifetime(1f));
-            }
+                Position = bullet.Get<Transform>().Position,
+                Size = asteroid.Size
+            });
 
             _world.Send(new PlaySound("sfx/explosions/3"));
         }
