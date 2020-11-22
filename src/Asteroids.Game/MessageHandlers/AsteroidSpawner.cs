@@ -17,7 +17,9 @@ namespace Asteroids.Systems.Game.MessageHandlers
     public class AsteroidSpawner : TypedMessageHandler<SpawnAsteroid>
     {
         public const int MaxSize = 4; 
+     
         public float MaxVelocity { get; set; } = 200f;
+        public float SafeDistance { get; set; } = 150f;
         
         private readonly GraphicsDevice _graphicsDevice;
         private readonly ContentManager _content;
@@ -34,10 +36,7 @@ namespace Asteroids.Systems.Game.MessageHandlers
         
         protected override void Handle(SpawnAsteroid message)
         {
-            Vector2 position = message.Position ?? new Vector2(
-                (float) _world.Random.NextDouble() * _world.Width,
-                (float) _world.Random.NextDouble() * _world.Height
-            );
+            Vector2 position = message.Position ?? GeneratePosition();
             float directionAngle = (float) (_world.Random.NextDouble() - 0.5d) * 4 * MathF.PI;
             float startingVelocity = MaxVelocity / message.Size;
             
@@ -67,6 +66,24 @@ namespace Asteroids.Systems.Game.MessageHandlers
                 {
                     Size = message.Size
                 });
+        }
+
+        private Vector2 GeneratePosition()
+        {
+            Entity? player = _world.Entities.With<Player>().FirstOrDefault();
+            var transform = player?.Get<Transform>();
+            
+            Vector2 position;
+
+            do
+            {
+                position = new Vector2(
+                    (float) _world.Random.NextDouble() * _world.Width,
+                    (float) _world.Random.NextDouble() * _world.Height
+                );
+            } while (transform != null && (transform.Position - position).Length() < SafeDistance);
+
+            return position;
         }
     }
 }
