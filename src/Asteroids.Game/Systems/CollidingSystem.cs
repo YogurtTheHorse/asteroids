@@ -22,7 +22,7 @@ namespace Asteroids.Systems.Game.Systems
             var colliderB = b.Get<Collider>();
             var transformB = b.Get<Transform>();
 
-            var intersects = Polygon2.Intersects(
+            bool intersects = Polygon2.Intersects(
                 colliderA.Shape,
                 colliderB.Shape,
                 transformA.Position,
