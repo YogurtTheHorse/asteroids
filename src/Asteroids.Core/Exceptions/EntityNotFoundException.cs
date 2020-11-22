@@ -1,9 +1,7 @@
-﻿using Asteroids.Core.Exceptions;
-
-namespace Asteroids.Core
+﻿namespace Asteroids.Core.Exceptions
 {
     public class EntityNotFoundException : CoreException
     {
-        public EntityNotFoundException(int entityId) :base($"Entity {entityId} wasn't find") { }
+        public EntityNotFoundException(int entityId) :base($"Entity {entityId} wasn't found") { }
     }
 }

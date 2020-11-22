@@ -49,14 +49,15 @@ namespace Asteroids
                     _world
                 ))
                 .Register(new BulletSpawner(Content.Load<Texture2D>("laser"), _world))
-                .Register(new CollisionHandler())
+                .Register(new CollisionHandler(_world))
+                .Register(new SoundManager(Content))
                 .Register(new RendererSystemSwitcher(_world));
 
             var playerVertices = new[]
             {
-                new Vector2(25f, 0),
-                new Vector2(-5f, -10f),
-                new Vector2(-5f, 10f),
+                new Vector2(15f, 0),
+                new Vector2(-3f, -5f),
+                new Vector2(-3f, 5f),
             };
 
             _world

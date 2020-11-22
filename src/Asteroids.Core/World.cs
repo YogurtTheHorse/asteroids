@@ -142,6 +142,13 @@ namespace Asteroids.Core
             entity.IsDestroyed = true;
         }
 
+        public void Destroy(Entity entity)
+        {
+            if (entity.IsDestroyed) return;
+
+            Destroy(entity.Id);
+        }
+
         public T Get<T>() where T : IBaseSystem
         {
             foreach (IDrawSystem drawSystem in _drawSystems)
