@@ -10,7 +10,6 @@ namespace Asteroids.Systems.Game.Systems
 {
     public class PlayerAnimationSystem : EntityProcessingSystem<Player>
     {
-        private SpriteRenderer? _exhaustRenderer = null; 
         private readonly ContentManager _contentLoader;
 
         public PlayerAnimationSystem(ContentManager contentLoader, World world) : base(world)
@@ -20,21 +19,21 @@ namespace Asteroids.Systems.Game.Systems
 
         public override void Update(Entity entity, GameTime delta)
         {
-            var spriteRenderer = entity.Get<SpriteRenderer>();
+            var player = entity.Get<Player>();
             var rigidbody = entity.Get<Rigidbody>();
 
-            if (rigidbody.Acceleration.Length() > 0 && _exhaustRenderer is null)
+            if (rigidbody.Acceleration.Length() > 0 && player.ExhaustRenderer is null)
             {
-                _exhaustRenderer = new SpriteRenderer()
+                player.ExhaustRenderer = new SpriteRenderer()
                 {
                     Texture = _contentLoader.Load<Texture2D>("ship/ship_exhaust_1")
                 };
-                entity.Attach(_exhaustRenderer);
+                entity.Attach(player.ExhaustRenderer);
             }
-            else if (_exhaustRenderer is not null && rigidbody.Acceleration == Vector2.Zero)
+            else if (player.ExhaustRenderer is not null && rigidbody.Acceleration == Vector2.Zero)
             {
-                entity.DeAttach(_exhaustRenderer);
-                _exhaustRenderer = null;
+                entity.DeAttach(player.ExhaustRenderer);
+                player.ExhaustRenderer = null;
             }
 
         }

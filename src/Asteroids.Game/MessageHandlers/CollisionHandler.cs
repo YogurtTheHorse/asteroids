@@ -5,6 +5,7 @@ using Asteroids.Core.Messaging;
 using Asteroids.Core.Utils;
 using Asteroids.Systems.Game.Components;
 using Asteroids.Systems.Game.Messages;
+using Asteroids.Systems.Game.Systems;
 using Microsoft.Xna.Framework;
 
 namespace Asteroids.Systems.Game.MessageHandlers
@@ -54,11 +55,10 @@ namespace Asteroids.Systems.Game.MessageHandlers
                 Position = bullet.Get<Transform>().Position,
                 Size = asteroid.Size
             });
-            
+
             _world
-                .Entities
-                .With<ScoreComponent>()
-                .ForEach(s => s.Get<ScoreComponent>().Score += 10 * asteroid.Size);
+                .Get<GameManagementSystem>()
+                .Score += 10 * asteroid.Size;
         }
 
         private void SpawnAsteroidParts(Entity other, Asteroid asteroid)

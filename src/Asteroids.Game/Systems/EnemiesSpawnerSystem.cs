@@ -53,5 +53,10 @@ namespace Asteroids.Systems.Game.Systems
                 Size = AsteroidSpawner.MaxSize
             });
         }
+
+        public void Restart()
+        {
+            _timeToSpawn = 0;
+        }
     }
 }

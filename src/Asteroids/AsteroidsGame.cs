@@ -36,6 +36,9 @@ namespace Asteroids
         {
             base.Initialize();
 
+            SpriteFont spriteFont = Content.Load<SpriteFont>("fonts/Eneminds Bold");
+            SpriteFont vectorFont = Content.Load<SpriteFont>("fonts/VectorBattle");
+
             SetScale(2);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _nativeRenderTarget = new RenderTarget2D(GraphicsDevice, _world.Width, _world.Height);
@@ -57,9 +60,9 @@ namespace Asteroids
                 .Register(new DebugRendererSystem(GraphicsDevice, _world))
                 .Register(new PlayerAnimationSystem(Content, _world))
                 .Register(new EnemiesSpawnerSystem(_world))
-                .Register(new ScoreSystem(_world))
+                .Register(new GameManagementSystem(Content, _polygonLoader, _world))
                 .Register(new ExplosionsSpawner(_world))
-                .Register(new FontRendererSystem(Content.Load<SpriteFont>("fonts/Eneminds Bold"), GraphicsDevice, _world))
+                .Register(new FontRendererSystem(spriteFont, GraphicsDevice, _world))
                 .Register(new CollidingSystem(_world));
 
             _world
@@ -76,9 +79,7 @@ namespace Asteroids
                 ))
                 .Register(new CollisionHandler(_world))
                 .Register(new SoundManager(Content))
-                .Register(new RendererSystemSwitcher(_world));
-
-            SpawnPlayer();
+                .Register(new RendererSystemSwitcher(spriteFont, vectorFont, _world));
         }
 
         private void SetScale(int scale)
@@ -113,35 +114,6 @@ namespace Asteroids
             _spriteBatch.End();
 
             base.Draw(gameTime);
-        }
-
-        private void SpawnPlayer()
-        {
-            PolygonRenderer polygon = _polygonLoader.Load("polygons/ship");
-
-            _world
-                .CreateEntity()
-                .Attach(new Transform
-                {
-                    Position = new Vector2(_world.Width / 2f, _world.Height / 2f)
-                })
-                .Attach(new Rigidbody())
-                .Attach(new SpriteRenderer
-                {
-                    Texture = Content.Load<Texture2D>("ship/ship")
-                })
-                .Attach(polygon)
-                .Attach(new Collider(new Polygon2(polygon.Vertices)))
-                .Attach(new Player());
-
-            _world
-                .CreateEntity()
-                .Attach(new Transform
-                {
-                    Position = new Vector2(10f)
-                })
-                .Attach(new LabelComponent())
-                .Attach(new ScoreComponent());
         }
     }
 }

@@ -11,13 +11,13 @@ namespace Asteroids.Systems.Game.Systems
 {
     public class FontRendererSystem : AbstractSystem, IDrawSystem
     {
-        public SpriteFont SpriteFont { get; set; }
+        public SpriteFont Font { get; set; }
         
         private readonly SpriteBatch _spriteBatch;
 
-        public FontRendererSystem(SpriteFont spriteFont, GraphicsDevice graphicsDevice, World world) : base(world)
+        public FontRendererSystem(SpriteFont font, GraphicsDevice graphicsDevice, World world) : base(world)
         {
-            SpriteFont = spriteFont;
+            Font = font;
             _spriteBatch = new SpriteBatch(graphicsDevice);
         }
 
@@ -36,17 +36,17 @@ namespace Asteroids.Systems.Game.Systems
         private void DrawString(Entity entity)
         {
             var label = entity.Get<LabelComponent>();
-            Vector2 size = SpriteFont.MeasureString(label.Label);
+            Vector2 size = Font.MeasureString(label.Label);
 
             Vector2 offset =
                 label.Align switch
                 {
-                    Align.Center => size / 2f,
+                    Align.Center => -size / 2,
                     Align.TopLeft => Vector2.Zero,
                     _ => throw new InvalidOperationException($"Got unsupported align: {label.Align}")
                 };
             
-            _spriteBatch.DrawString(SpriteFont, label.Label, entity.Get<Transform>().Position + offset, label.Color);
+            _spriteBatch.DrawString(Font, label.Label, entity.Get<Transform>().Position + offset, label.Color);
         }
     }
 }
