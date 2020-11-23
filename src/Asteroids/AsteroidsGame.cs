@@ -1,5 +1,7 @@
 ﻿using System;
 using Asteroids.Core;
+using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Content;
 using Asteroids.Systems.Game.MessageHandlers;
 using Asteroids.Systems.Game.Messages;
 using Asteroids.Systems.Game.PolygonLoading;
@@ -16,6 +18,7 @@ namespace Asteroids
     public class AsteroidsGame : Game
     {
         private readonly PolygonLoader _polygonLoader;
+        private readonly JsonLoader _jsonLoader;
         private readonly GraphicsDeviceManager _graphics;
         private readonly World _world;
         private RenderTarget2D _nativeRenderTarget = null!;
@@ -30,7 +33,8 @@ namespace Asteroids
             IsMouseVisible = true;
 
             _graphics = new GraphicsDeviceManager(this);
-            _polygonLoader = new PolygonLoader(Content.RootDirectory);
+            _jsonLoader = new JsonLoader(Content.RootDirectory);
+            _polygonLoader = new PolygonLoader(_jsonLoader);
             _world = new World(480, 360);
         }
 
@@ -63,7 +67,8 @@ namespace Asteroids
                 .Register(new PlayerAnimationSystem(Content, _world))
                 .Register(new EnemiesSpawnerSystem(_world))
                 .Register(new GameManagementSystem(Content, _polygonLoader, _world))
-                .Register(new ExplosionsSpawner(_world))
+                .Register(new ExplosionsSpawner(_jsonLoader, _world))
+                .Register(new AnimationsSystem(Content, _world))
                 .Register(new FontRendererSystem(spriteFont, GraphicsDevice, _world))
                 .Register(new CollidingSystem(_world));
 

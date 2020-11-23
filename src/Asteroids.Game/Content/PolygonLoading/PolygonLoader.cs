@@ -3,32 +3,23 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Content;
 using Microsoft.Xna.Framework;
 
 namespace Asteroids.Systems.Game.PolygonLoading
 {
     public class PolygonLoader
     {
-        private readonly string _contentRoot;
+        private readonly JsonLoader _jsonLoader;
 
-        public PolygonLoader(string contentRoot)
+        public PolygonLoader(JsonLoader jsonLoader)
         {
-            _contentRoot = contentRoot;
+            _jsonLoader = jsonLoader;
         }
 
         public PolygonRenderer Load(string polygonName)
         {
-            string path = Path.Combine(_contentRoot, polygonName + ".json");
-
-            using var jsonFile = new StreamReader(path);
-            string jsonContent = jsonFile.ReadToEnd();
-            
-            var rawPolygon = JsonSerializer.Deserialize<RawPolygon>(jsonContent);
-
-            if (rawPolygon is null)
-            {
-                throw new Exception($"Unnable to deserialize raw polygon from file: {path}");
-            }
+            var rawPolygon = _jsonLoader.Load<RawPolygon>(polygonName);
 
             return new PolygonRenderer()
             {

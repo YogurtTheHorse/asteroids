@@ -1,0 +1,17 @@
+﻿{
+  "Loop": true,
+  "Clips": [
+    {
+      "Name": "explosions/explosion_1",
+      "Duration": 0.1
+    },
+    {
+      "Name": "explosions/explosion_2",
+      "Duration": 0.1
+    },
+    {
+      "Name": "explosions/explosion_3",
+      "Duration": 0.1
+    }
+  ]
+}

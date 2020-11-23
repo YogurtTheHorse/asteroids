@@ -23,4 +23,8 @@
         <ProjectReference Include="..\Asteroids.Core\Asteroids.Core.csproj" />
         <ProjectReference Include="..\Asteroids.Game\Asteroids.Game.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Content\explosions" />
+    </ItemGroup>
 </Project>

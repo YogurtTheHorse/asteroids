@@ -246,6 +246,9 @@
 #begin sfx/readme.txt
 /copy:sfx/readme.txt
 
+#begin animations/explosion.json
+/copy:animations/explosion.json
+
 #begin ship/bullet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -281,4 +284,43 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:ship/ship_exhaust_1.png
+
+
+#begin explosions/explosion_1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:explosions/explosion_1.png
+
+
+#begin explosions/explosion_2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:explosions/explosion_2.png
+
+
+#begin explosions/explosion_3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:explosions/explosion_3.png
 
