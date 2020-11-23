@@ -11,8 +11,8 @@ This repo contains my clone of the old Asteroids game published by Atari. Purpos
 3. Two renderer system (oldschool polygonal and beatiful sprites, switched by pressing Left control)
 4. Score system
 5. Shooting by pressing Z
-6. Shooting lasers when charged on X (in development) 
-7. UFOs (in development)
+6. Shooting lasers when charged on X
+7. UFOs
 8. Change resolution by N\M and press F to enter fullscreen
 
 # Source code
@@ -33,6 +33,11 @@ Most of dependencies are managed by NuGet, but I had to use submodules for Sharp
 As a main pattern to manage logic I choosed a ECS pattern, so it will be easy to switch rendering system, manage entities and so on. I didn't use MonoGame.Extended ECS system because it's hardcoded inside MonoGame.Extended and I'd had to take all of Extended package with game and it's deadly huge. Unlike Unity DOTS my implementation is pretty slow, because it would make development much longer which I wouldn't like. 
 
 So, the conecpt is pretty simple. Main class of ECS system is world it holds entites and systems. Systems may be of 2 types: draw and update. Entites hold components inside and don't have any game logic inside. Components also don't have any game logic and their purpose is to store data. They must be immutable when possible.
+
+# Dependency Injection
+I decided not to use dependency injection, because there are only 3 possible things system may need - world, content manager and json loader. I believe it's easier to write them by hand, but there's no problem with injecting DI into games if it'd be needed.
+
+For communications between systems messaging may be used, so, again, DI isn't too   
 
 ## Messaging
 As a way of communications between systems I decided to use a very simple message queue with typed observers. Anything can subscribe on messages and anythinh can send them with world instance.
