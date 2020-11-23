@@ -12,6 +12,6 @@ namespace Asteroids.Systems.Game.Components
             .Require<Rigidbody>()
             .Require<Renderer>();
 
-        public SpriteRenderer ExhaustRenderer { get; set; }
+        public SpriteRenderer? ExhaustRenderer { get; set; }
     }
 }
