@@ -2,7 +2,7 @@
 using System.Linq;
 using Asteroids.Core.Ecs;
 
-namespace Asteroids.Systems.Game.Components
+namespace Asteroids.Systems.Game.Components.Rendering
 {
     public class Animation : Component
     {

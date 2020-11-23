@@ -5,7 +5,7 @@ using Asteroids.Systems.Game.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Asteroids.Systems.Game.Systems
+namespace Asteroids.Systems.Game.Systems.Rendering
 {
     /// <summary>
     /// System that keeps entities inside screen.

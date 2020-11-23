@@ -3,11 +3,12 @@ using Asteroids.Core;
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Components.Physics;
 using Asteroids.Systems.Game.Messages;
 using Microsoft.Xna.Framework;
 using SharpMath2;
 
-namespace Asteroids.Systems.Game.Systems
+namespace Asteroids.Systems.Game.Systems.Physics
 {
     public class CollidingSystem : AbstractSystem, IUpdateSystem
     {

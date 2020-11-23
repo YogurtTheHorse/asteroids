@@ -1,9 +1,10 @@
 ﻿using Asteroids.Core;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Components.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Asteroids.Systems.Game.Systems
+namespace Asteroids.Systems.Game.Systems.Rendering
 {
     public class SpriteRendererSystem : RendererSystemBase<SpriteRenderer>
     {

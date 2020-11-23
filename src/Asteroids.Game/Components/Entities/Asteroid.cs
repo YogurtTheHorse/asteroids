@@ -1,6 +1,8 @@
 ﻿using Asteroids.Core.Ecs;
+using Asteroids.Systems.Game.Components.Physics;
+using Asteroids.Systems.Game.Components.Rendering;
 
-namespace Asteroids.Systems.Game.Components
+namespace Asteroids.Systems.Game.Components.Entities
 {
     public class Asteroid : Component
     {

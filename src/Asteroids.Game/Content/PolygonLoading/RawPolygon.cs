@@ -1,4 +1,4 @@
-namespace Asteroids
+namespace Asteroids.Systems.Game.Content.PolygonLoading
 {
     public class RawPolygon
     {

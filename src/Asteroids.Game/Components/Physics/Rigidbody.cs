@@ -1,7 +1,7 @@
 using Asteroids.Core.Ecs;
 using Microsoft.Xna.Framework;
 
-namespace Asteroids.Systems.Game.Components
+namespace Asteroids.Systems.Game.Components.Physics
 {
     public class Rigidbody : Component
     {

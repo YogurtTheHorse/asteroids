@@ -3,6 +3,8 @@ using Asteroids.Core;
 using Asteroids.Core.Messaging;
 using Asteroids.Core.Utils;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Components.Physics;
+using Asteroids.Systems.Game.Components.Rendering;
 using Asteroids.Systems.Game.Content;
 using Asteroids.Systems.Game.Messages;
 using Microsoft.Xna.Framework;

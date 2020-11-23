@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
-namespace Asteroids.Systems.Game.Components
+namespace Asteroids.Systems.Game.Components.Rendering
 {
     /// <summary>
     /// Describes sprite to draw. All comments about properties can be found at <see cref="SpriteBatch.Draw"/>.

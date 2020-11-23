@@ -2,8 +2,11 @@
 using Asteroids.Core.Messaging;
 using Asteroids.Core.Utils;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Components.Entities;
+using Asteroids.Systems.Game.Components.Physics;
+using Asteroids.Systems.Game.Components.Rendering;
+using Asteroids.Systems.Game.Content.PolygonLoading;
 using Asteroids.Systems.Game.Messages;
-using Asteroids.Systems.Game.PolygonLoading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SharpMath2;

@@ -4,10 +4,11 @@ using Asteroids.Core;
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Components.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Asteroids.Systems.Game.Systems
+namespace Asteroids.Systems.Game.Systems.Rendering
 {
     public class BackgroundSystem : AbstractSystem, IDrawSystem
     {

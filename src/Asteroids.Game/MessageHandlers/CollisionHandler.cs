@@ -4,8 +4,10 @@ using Asteroids.Core.Ecs;
 using Asteroids.Core.Messaging;
 using Asteroids.Core.Utils;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Components.Entities;
 using Asteroids.Systems.Game.Messages;
 using Asteroids.Systems.Game.Systems;
+using Asteroids.Systems.Game.Systems.GameLogic;
 using Microsoft.Xna.Framework;
 
 namespace Asteroids.Systems.Game.MessageHandlers

@@ -5,12 +5,14 @@ using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
 using Asteroids.Core.Utils;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Components.Entities;
+using Asteroids.Systems.Game.Components.Physics;
 using Asteroids.Systems.Game.MessageHandlers;
 using Asteroids.Systems.Game.Messages;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Asteroids.Systems.Game.Systems
+namespace Asteroids.Systems.Game.Systems.Input
 {
     /// <summary>
     /// System that handles keyboard states and control player.

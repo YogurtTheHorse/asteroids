@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Linq;
 using Microsoft.Xna.Framework;
 
-namespace Asteroids.Systems.Game.Components
+namespace Asteroids.Systems.Game.Components.Rendering
 {
     /// <summary>
     /// Data for rendering entity as polygon.

@@ -1,7 +1,7 @@
 ﻿using Asteroids.Core.Ecs;
 using SharpMath2;
 
-namespace Asteroids.Systems.Game.Components
+namespace Asteroids.Systems.Game.Components.Physics
 {
     public class Collider : Component
     {

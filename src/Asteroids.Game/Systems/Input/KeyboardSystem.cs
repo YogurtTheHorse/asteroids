@@ -5,7 +5,7 @@ using Asteroids.Systems.Game.Messages;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Asteroids.Systems.Game.Systems
+namespace Asteroids.Systems.Game.Systems.Input
 {
     public class KeyboardSystem : AbstractSystem, IUpdateSystem
     {

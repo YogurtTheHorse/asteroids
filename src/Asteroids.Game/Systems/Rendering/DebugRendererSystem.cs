@@ -1,12 +1,13 @@
 ﻿using Asteroids.Core;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Components.Rendering;
 using Asteroids.Systems.Game.Messages;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Primitives2D;
 
-namespace Asteroids.Systems.Game.Systems
+namespace Asteroids.Systems.Game.Systems.Rendering
 {
     public class DebugRendererSystem : RendererSystemBase<Renderer>
     {

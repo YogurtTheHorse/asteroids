@@ -2,7 +2,7 @@
 using Asteroids.Core.Ecs;
 using Color = Microsoft.Xna.Framework.Color;
 
-namespace Asteroids.Systems.Game.Components
+namespace Asteroids.Systems.Game.Components.Rendering
 {
     /// <summary>
     /// Base class for components describing renderer data.

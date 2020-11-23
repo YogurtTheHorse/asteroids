@@ -3,6 +3,7 @@ using Asteroids.Core.Messaging;
 using Asteroids.Systems.Game.Enums;
 using Asteroids.Systems.Game.Messages;
 using Asteroids.Systems.Game.Systems;
+using Asteroids.Systems.Game.Systems.Rendering;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 

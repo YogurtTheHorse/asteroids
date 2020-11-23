@@ -3,9 +3,10 @@ using Asteroids.Core;
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Components.Physics;
 using Microsoft.Xna.Framework;
 
-namespace Asteroids.Systems.Game.Systems
+namespace Asteroids.Systems.Game.Systems.Physics
 {
     /// <summary>
     /// System that handles velocities of entities with rigidbody.

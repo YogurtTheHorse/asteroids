@@ -1,9 +1,10 @@
 ﻿using Asteroids.Core;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Components.Rendering;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Primitives2D;
 
-namespace Asteroids.Systems.Game.Systems
+namespace Asteroids.Systems.Game.Systems.Rendering
 {
     public class PolygonRendererSystem : RendererSystemBase<PolygonRenderer>
     {

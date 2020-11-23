@@ -1,14 +1,13 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Asteroids.Core;
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
-using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Components.Entities;
 using Asteroids.Systems.Game.MessageHandlers;
 using Asteroids.Systems.Game.Messages;
 using Microsoft.Xna.Framework;
 
-namespace Asteroids.Systems.Game.Systems
+namespace Asteroids.Systems.Game.Systems.GameLogic
 {
     public class EnemiesSpawnerSystem : AbstractSystem, IUpdateSystem
     {

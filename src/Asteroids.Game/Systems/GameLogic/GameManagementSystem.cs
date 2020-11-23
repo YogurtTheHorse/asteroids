@@ -3,16 +3,19 @@ using Asteroids.Core;
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Components.Entities;
+using Asteroids.Systems.Game.Components.Physics;
+using Asteroids.Systems.Game.Components.Rendering;
+using Asteroids.Systems.Game.Content.PolygonLoading;
 using Asteroids.Systems.Game.Enums;
 using Asteroids.Systems.Game.Messages;
-using Asteroids.Systems.Game.PolygonLoading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SharpMath2;
 
-namespace Asteroids.Systems.Game.Systems
+namespace Asteroids.Systems.Game.Systems.GameLogic
 {
     public class GameManagementSystem : EntityProcessingSystem<ScoreComponent>
     {

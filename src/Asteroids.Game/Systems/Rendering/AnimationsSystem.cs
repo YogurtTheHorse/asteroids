@@ -1,13 +1,12 @@
-﻿using System.Linq;
-using Asteroids.Core;
+﻿using Asteroids.Core;
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
-using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Components.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Asteroids.Systems.Game.Systems
+namespace Asteroids.Systems.Game.Systems.Rendering
 {
     public class AnimationsSystem : EntityProcessingSystem<Animation>
     {

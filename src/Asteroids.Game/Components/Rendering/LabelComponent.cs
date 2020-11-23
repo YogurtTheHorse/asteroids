@@ -2,7 +2,7 @@ using Asteroids.Core.Ecs;
 using Asteroids.Systems.Game.Enums;
 using Microsoft.Xna.Framework;
 
-namespace Asteroids.Systems.Game.Components
+namespace Asteroids.Systems.Game.Components.Rendering
 {
     public class LabelComponent : Component
     {
