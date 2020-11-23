@@ -95,13 +95,6 @@ namespace Asteroids.Core
                 handler.Handle(message);
             }
 
-#if DEBUG
-            if (_messagesQueue.Any())
-            {
-                // TODO: Log warning about possible message loop 
-            }
-#endif
-
             foreach (IUpdateSystem updateSystem in _updateSystems)
             {
                 if (!updateSystem.Enabled) continue;
