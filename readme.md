@@ -13,6 +13,7 @@ This repo contains my clone of the old Asteroids game published by Atari. Purpos
 5. Shooting by pressing Z
 6. Shooting lasers when charged on X (in development) 
 7. UFOs (in development)
+8. Change resolution by N\M and press F to enter fullscreen
 
 # Source code
 
