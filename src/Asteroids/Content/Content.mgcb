@@ -13,18 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin asteroid.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:asteroid.png
-
 #begin bg/bg.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -62,18 +50,6 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:fonts/VectorBattle.spritefont
-
-#begin laser.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:laser.png
 
 #begin planetoids/planetoid_1.png
 /importer:TextureImporter
