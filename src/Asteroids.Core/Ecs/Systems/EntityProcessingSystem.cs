@@ -6,10 +6,10 @@ namespace Asteroids.Core.Ecs.Systems
     {
         public EntityProcessingSystem(World world) : base(world) { }
 
-        public virtual void Update(GameTime delta) => World
+        public virtual void Update(GameTime gameTime) => World
             .Entities
             .With<T>()
-            .ForEach(e => Update(e, delta));
+            .ForEach(e => Update(e, gameTime));
 
         public abstract void Update(Entity entity, GameTime delta);
     }

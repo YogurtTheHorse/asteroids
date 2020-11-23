@@ -15,7 +15,7 @@ namespace Asteroids.Systems.Game.Systems.Input
         {
         }
 
-        public void Update(GameTime _)
+        public void Update(GameTime gameTime)
         {
             KeyboardState newState = Keyboard.GetState();
 

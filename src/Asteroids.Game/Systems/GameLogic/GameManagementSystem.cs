@@ -78,12 +78,12 @@ namespace Asteroids.Systems.Game.Systems.GameLogic
             _gameStarted = true;
         }
 
-        public override void Update(GameTime delta)
+        public override void Update(GameTime gameTime)
         {
-            base.Update(delta);
+            base.Update(gameTime);
 
             Entity? playerEntity = World.Entities.With<Player>().FirstOrDefault();
-            _timeToGiveLaser -= (float) delta.ElapsedGameTime.TotalSeconds;
+            _timeToGiveLaser -= (float) gameTime.ElapsedGameTime.TotalSeconds;
 
             if (playerEntity is null && _gameStarted)
             {

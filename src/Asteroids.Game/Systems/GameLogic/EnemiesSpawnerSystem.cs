@@ -28,7 +28,7 @@ namespace Asteroids.Systems.Game.Systems.GameLogic
         {
         }
 
-        public void Update(GameTime delta)
+        public void Update(GameTime gameTime)
         {
             if (!World.Entities.With<Player>().Any()) return;
 
@@ -43,7 +43,7 @@ namespace Asteroids.Systems.Game.Systems.GameLogic
                 _timeToSpawn = MinTimeToSpawn + (float) World.Random.NextDouble() * (MaxTimeToSpawn - MinTimeToSpawn);
             }
 
-            _timeToSpawn -= (float) delta.ElapsedGameTime.TotalSeconds;
+            _timeToSpawn -= (float) gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         private void SpawnEnemy()

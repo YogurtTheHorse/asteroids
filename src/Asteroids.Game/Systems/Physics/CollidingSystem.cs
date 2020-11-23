@@ -39,7 +39,7 @@ namespace Asteroids.Systems.Game.Systems.Physics
             }
         }
 
-        public void Update(GameTime delta)
+        public void Update(GameTime gameTime)
         {
             var entities = World.Entities.With<Collider>().ToArray();
 

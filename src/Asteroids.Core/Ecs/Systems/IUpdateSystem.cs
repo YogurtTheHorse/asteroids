@@ -10,7 +10,7 @@ namespace Asteroids.Core.Ecs.Systems
         /// <summary>
         /// Called every frame.
         /// </summary>
-        /// <param name="delta">Time passed from last time.</param>
-        void Update(GameTime delta);
+        /// <param name="gameTime">Time passed from last time.</param>
+        void Update(GameTime gameTime);
     }
 }

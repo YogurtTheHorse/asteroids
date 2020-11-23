@@ -23,11 +23,11 @@ namespace Asteroids.Core
         private readonly Queue<Message> _messagesQueue;
 
         public IEnumerable<Entity> Entities => _entities.AsReadOnly();
-        
+
         public int Width { get; }
-        
+
         public int Height { get; }
-        
+
         public Random Random { get; }
 
         public World(int width, int height)
@@ -75,8 +75,8 @@ namespace Asteroids.Core
 
         public Entity CreateEntity()
         {
-            var entity =
-                new Entity(_entitiesCounter++); // ha-ha C++ style (this comment is making this code readable btw)
+            // ha-ha C++ style (this comment is making this code readable btw)
+            var entity = new Entity(_entitiesCounter++); 
 
             _entities.Add(entity);
 
@@ -91,16 +91,27 @@ namespace Asteroids.Core
             foreach (Message message in messages)
             foreach (IMessageHandler handler in _messageHandlers)
             {
-                // todo: add error handling
-                handler.Handle(message);
+                try
+                {
+                    handler.Handle(message);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
 
             foreach (IUpdateSystem updateSystem in _updateSystems)
             {
                 if (!updateSystem.Enabled) continue;
-                
-                // todo: add error handling
-                updateSystem.Update(gameTime);
+                try
+                {
+                    updateSystem.Update(gameTime);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
 
             for (int i = 0; i < _entities.Count; i++)
@@ -118,9 +129,15 @@ namespace Asteroids.Core
             foreach (IDrawSystem drawSystem in _drawSystems)
             {
                 if (!drawSystem.Enabled) continue;
-                
-                // todo: add error handling
-                drawSystem.Draw(gameTime);
+
+                try
+                {
+                    drawSystem.Draw(gameTime);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
         }
 
@@ -155,15 +172,15 @@ namespace Asteroids.Core
                 if (drawSystem is T typed)
                 {
                     return typed;
-                } 
+                }
             }
-            
+
             foreach (IUpdateSystem updateSystem in _updateSystems)
             {
                 if (updateSystem is T typed)
                 {
                     return typed;
-                } 
+                }
             }
 
             throw new CoreException($"System {typeof(T).Name} is not present in world.");
