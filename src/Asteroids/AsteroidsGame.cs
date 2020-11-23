@@ -31,7 +31,7 @@ namespace Asteroids
 
             _graphics = new GraphicsDeviceManager(this);
             _polygonLoader = new PolygonLoader(Content.RootDirectory);
-            _world = new World(640, 480);
+            _world = new World(480, 360);
         }
 
         protected override void Initialize()
