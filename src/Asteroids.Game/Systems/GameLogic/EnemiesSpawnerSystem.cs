@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework;
 
 namespace Asteroids.Systems.Game.Systems.GameLogic
 {
-    public class EnemiesSpawnerSystem : AbstractSystem, IUpdateSystem
+    public class EnemiesSpawnerSystem : WorldSystem, IUpdateSystem
     {
         private float _timeToSpawn = 0f;
 

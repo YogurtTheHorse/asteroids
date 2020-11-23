@@ -124,7 +124,7 @@ namespace Asteroids.Systems.Game.Systems.GameLogic
                 .Attach(new ScoreComponent());
         }
 
-        public override void Update(Entity entity, GameTime delta)
+        public override void Update(Entity entity, GameTime gameTime)
         {
             var label = entity.Get<LabelComponent>();
 

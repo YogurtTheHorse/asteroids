@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Asteroids.Systems.Game.Systems.Rendering
 {
-    public class BackgroundSystem : AbstractSystem, IDrawSystem
+    public class BackgroundSystem : WorldSystem, IDrawSystem
     {
         public float ParallaxMaxShift { get; set; } = 5f;
 

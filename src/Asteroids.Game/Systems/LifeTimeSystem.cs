@@ -11,10 +11,10 @@ namespace Asteroids.Systems.Game.Systems
     {
         public LifeTimeSystem(World world) : base(world) {}
 
-        public override void Update(Entity entity, GameTime delta)
+        public override void Update(Entity entity, GameTime gameTime)
         {
             var lifetime = entity.Get<Lifetime>();
-            lifetime.TimeToLive -= (float) delta.ElapsedGameTime.TotalSeconds;
+            lifetime.TimeToLive -= (float) gameTime.ElapsedGameTime.TotalSeconds;
 
             if (lifetime.TimeToLive < 0)
             {

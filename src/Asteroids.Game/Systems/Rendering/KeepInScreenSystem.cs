@@ -20,7 +20,7 @@ namespace Asteroids.Systems.Game.Systems.Rendering
             _graphicsDevice = graphicsDevice;
         }
 
-        public override void Update(Entity entity, GameTime delta)
+        public override void Update(Entity entity, GameTime gameTime)
         {
             var transform = entity.Get<Transform>();
 

@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Asteroids.Systems.Game.Systems.Rendering
 {
-    public class FontRendererSystem : AbstractSystem, IDrawSystem
+    public class FontRendererSystem : WorldSystem, IDrawSystem
     {
         public SpriteFont Font { get; set; }
         

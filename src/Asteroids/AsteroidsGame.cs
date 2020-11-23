@@ -128,6 +128,7 @@ namespace Asteroids
             _fullscreen = fullscreen;
             if (fullscreen)
             {
+                // find max scale we can render to
                 _scale = Math.Min(
                     GraphicsDevice.DisplayMode.Width / _world.Width,
                     GraphicsDevice.DisplayMode.Height / _world.Height

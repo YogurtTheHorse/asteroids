@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Asteroids.Systems.Game.Systems.Rendering
 {
-    public abstract class RendererSystemBase<T> : AbstractSystem, IDrawSystem where T : Renderer
+    public abstract class RendererSystemBase<T> : WorldSystem, IDrawSystem where T : Renderer
     {
         private readonly GraphicsDevice _graphicsDevice;
         protected SpriteBatch SpriteBatch { get; }

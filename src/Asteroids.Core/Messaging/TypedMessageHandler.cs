@@ -1,6 +1,9 @@
 namespace Asteroids.Core.Messaging
 {
-    
+    /// <summary>
+    /// Message handler that filters message type.
+    /// </summary>
+    /// <typeparam name="T">Allowed message type.</typeparam>
     public abstract class TypedMessageHandler<T> : IMessageHandler where T : Message
     {
         public void Handle(Message message)

@@ -11,6 +11,11 @@
     /// </remarks>
     public delegate void MessageHandlerType<in T>(T message) where T : Message;
     
+    /// <summary>
+    /// Handy implementation of message handler to put delegate as handler.
+    /// </summary>
+    /// <typeparam name="T">Message type to handle.</typeparam>
+    /// <seealso cref="TypedMessageHandler{T}"/>
     public class InlineTypedMessageHandler<T> : TypedMessageHandler<T> where T : Message
     {
         private readonly MessageHandlerType<T> _handler;
@@ -20,6 +25,7 @@
             _handler = handler;
         }
 
+        /// <inheritdoc />
         protected override void Handle(T message)
         {
             _handler(message);

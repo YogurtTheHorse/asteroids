@@ -22,12 +22,24 @@ namespace Asteroids.Core
         private readonly List<IMessageHandler> _messageHandlers;
         private readonly Queue<Message> _messagesQueue;
 
+        /// <summary>
+        /// Current entities of the world.
+        /// </summary>
         public IEnumerable<Entity> Entities => _entities.AsReadOnly();
 
+        /// <summary>
+        /// Native world width.
+        /// </summary>
         public int Width { get; }
 
+        /// <summary>
+        /// Native world height.
+        /// </summary>
         public int Height { get; }
 
+        /// <summary>
+        /// Public random initialized by world.
+        /// </summary>
         public Random Random { get; }
 
         public World(int width, int height)
@@ -66,6 +78,10 @@ namespace Asteroids.Core
             return this;
         }
 
+        /// <summary>
+        /// Automatically created <see cref="MessageHandlerType{T}"/> and registers it as message handler.
+        /// </summary>
+        /// <seealso cref="Register(Asteroids.Core.Messaging.IMessageHandler)"/>
         public World Register<T>(MessageHandlerType<T> handle) where T : Message
         {
             _messageHandlers.Add(new InlineTypedMessageHandler<T>(handle));
@@ -73,6 +89,10 @@ namespace Asteroids.Core
             return this;
         }
 
+        /// <summary>
+        /// Creates empty entity with unique id.
+        /// </summary>
+        /// <returns>Created entity.</returns>
         public Entity CreateEntity()
         {
             // ha-ha C++ style (this comment is making this code readable btw)
@@ -141,11 +161,17 @@ namespace Asteroids.Core
             }
         }
 
+        /// <summary>
+        /// Sends message to all message handlers before next update frame.
+        /// </summary>
         public void Send(Message message)
         {
             _messagesQueue.Enqueue(message);
         }
 
+        /// <summary>
+        /// Marks entity as destroyed and removes it from entities collection right after update.
+        /// </summary>
         public void Destroy(int entityId)
         {
             var entity = _entities.FirstOrDefault(e => e.Id == entityId);
@@ -158,6 +184,7 @@ namespace Asteroids.Core
             entity.IsDestroyed = true;
         }
 
+        /// <inheritdoc cref="Destroy(int)"/>
         public void Destroy(Entity entity)
         {
             if (entity.IsDestroyed) return;
@@ -165,6 +192,9 @@ namespace Asteroids.Core
             Destroy(entity.Id);
         }
 
+        /// <summary>
+        /// Gets system attached to world by its type.
+        /// </summary>
         public T Get<T>() where T : IBaseSystem
         {
             foreach (IDrawSystem drawSystem in _drawSystems)

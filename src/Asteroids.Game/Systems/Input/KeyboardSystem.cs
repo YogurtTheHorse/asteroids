@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Asteroids.Systems.Game.Systems.Input
 {
-    public class KeyboardSystem : AbstractSystem, IUpdateSystem
+    public class KeyboardSystem : WorldSystem, IUpdateSystem
     {
         private KeyboardState _oldKeyboardState; 
         

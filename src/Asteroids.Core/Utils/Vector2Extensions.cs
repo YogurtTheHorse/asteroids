@@ -27,12 +27,17 @@ namespace Asteroids.Core.Utils
 
         }
 
-        public static (float minX, float minY, float maxX, float maxY) GetBoundaries(this Vector2[] corners)
+        /// <summary>
+        /// Finds all mins and maxes of vectors collection.
+        /// </summary>
+        /// <param name="vertices">Collection of points.</param>
+        /// <returns>Tuple with mins and maxes.</returns>
+        public static (float minX, float minY, float maxX, float maxY) GetBoundaries(this Vector2[] vertices)
         {
-            float minX = corners.Min(v => v.X);
-            float minY = corners.Min(v => v.Y);
-            float maxX = corners.Max(v => v.X);
-            float maxY = corners.Max(v => v.Y);
+            float minX = vertices.Min(v => v.X);
+            float minY = vertices.Min(v => v.Y);
+            float maxX = vertices.Max(v => v.X);
+            float maxY = vertices.Max(v => v.Y);
             
             return (minX, minY, maxX, maxY);
         }

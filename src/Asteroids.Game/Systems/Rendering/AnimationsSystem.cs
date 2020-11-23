@@ -17,7 +17,7 @@ namespace Asteroids.Systems.Game.Systems.Rendering
             _content = content;
         }
 
-        public override void Update(Entity entity, GameTime delta)
+        public override void Update(Entity entity, GameTime gameTime)
         {
             var animation = entity.Get<Animation>();
 
@@ -26,7 +26,7 @@ namespace Asteroids.Systems.Game.Systems.Rendering
                 return;
             }
 
-            animation.Time += (float)delta.ElapsedGameTime.TotalSeconds;
+            animation.Time += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (animation.Time > animation.Duration)
             {

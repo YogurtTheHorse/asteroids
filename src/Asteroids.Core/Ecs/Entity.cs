@@ -141,10 +141,16 @@ namespace Asteroids.Core.Ecs
             return null;
         }
 
+        /// <summary>
+        /// Gets all component of specified type.
+        /// </summary>
+        /// <typeparam name="T">Type of component to search.</typeparam>
+        /// <returns>Sequence of components attached to entity. Possible empty.</returns>
         public IEnumerable<T> GetAll<T>() where T : Component => _components
             .Where(c => c is T)
             .Cast<T>();
 
+        /// <inheritdoc cref="GetAll{T}"/>
         public IEnumerable<Component> GetAll(Type componentType) => _components
             .Where(componentType.IsInstanceOfType);
     }

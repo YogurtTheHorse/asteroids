@@ -17,7 +17,7 @@ namespace Asteroids.Systems.Game.Systems.GameLogic
         {
         }
 
-        public override void Update(Entity entity, GameTime delta)
+        public override void Update(Entity entity, GameTime gameTime)
         {
             Entity? player = World.Entities.With<Player>().FirstOrDefault();
             

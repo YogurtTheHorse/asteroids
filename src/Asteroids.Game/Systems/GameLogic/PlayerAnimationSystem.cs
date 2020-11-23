@@ -24,7 +24,7 @@ namespace Asteroids.Systems.Game.Systems.GameLogic
             _emptyTexture = contentLoader.Load<Texture2D>("ship/ship");
         }
 
-        public override void Update(Entity entity, GameTime delta)
+        public override void Update(Entity entity, GameTime gameTime)
         {
             var player = entity.Get<Player>();
             var rigidbody = entity.Get<Rigidbody>();

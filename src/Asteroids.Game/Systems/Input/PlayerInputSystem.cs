@@ -31,7 +31,7 @@ namespace Asteroids.Systems.Game.Systems.Input
             world.Register<KeyPressed>(KeyPressedHandler);
         }
 
-        public override void Update(Entity player, GameTime delta)
+        public override void Update(Entity player, GameTime gameTime)
         {
             var rigidbody = player.Get<Rigidbody>();
             var transform = player.Get<Transform>();

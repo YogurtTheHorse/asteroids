@@ -10,7 +10,7 @@ using SharpMath2;
 
 namespace Asteroids.Systems.Game.Systems.Physics
 {
-    public class CollidingSystem : AbstractSystem, IUpdateSystem
+    public class CollidingSystem : WorldSystem, IUpdateSystem
     {
         public CollidingSystem(World world) : base(world)
         {
