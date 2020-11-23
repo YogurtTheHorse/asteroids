@@ -1,0 +1,15 @@
+<ArchitectureGraph>
+  <Module Identifier="9A7B9D2E-D5D2-4144-BDD9-46F46E855D19" Name="Asteroids" />
+  <Module Identifier="E8FE5566-7614-4727-9C6A-6B5A320BED36" Name="Asteroids.Core" />
+  <Module Identifier="7DF078B5-A15C-4F8C-9C34-0D7FF0D2ADC7" Name="Asteroids.Game" />
+  <Module Identifier="C53EEC84-72C2-4DF7-A92E-E56E3FCEE242" Name="MonoGame.SharpMath" />
+  <Module Identifier="53290E9B-7A54-4098-AB3D-E936D93BDF97" Name="SharpMath2" />
+  <Module Identifier="D752E618-29B5-4A71-9240-10171584390C" Name="Asteroids.Core.Tests" />
+  <Reference Identifier="9A7B9D2E-D5D2-4144-BDD9-46F46E855D19/r:Asteroids.Core" SourceId="9A7B9D2E-D5D2-4144-BDD9-46F46E855D19" Name="Asteroids.Core" TargetId="E8FE5566-7614-4727-9C6A-6B5A320BED36" />
+  <Reference Identifier="7DF078B5-A15C-4F8C-9C34-0D7FF0D2ADC7/r:Asteroids.Core" SourceId="7DF078B5-A15C-4F8C-9C34-0D7FF0D2ADC7" Name="Asteroids.Core" TargetId="E8FE5566-7614-4727-9C6A-6B5A320BED36" />
+  <Reference Identifier="C53EEC84-72C2-4DF7-A92E-E56E3FCEE242/r:SharpMath2" SourceId="C53EEC84-72C2-4DF7-A92E-E56E3FCEE242" Name="SharpMath2" TargetId="53290E9B-7A54-4098-AB3D-E936D93BDF97" />
+  <Reference Identifier="7DF078B5-A15C-4F8C-9C34-0D7FF0D2ADC7/r:MonoGame.SharpMath" SourceId="7DF078B5-A15C-4F8C-9C34-0D7FF0D2ADC7" Name="MonoGame.SharpMath" TargetId="C53EEC84-72C2-4DF7-A92E-E56E3FCEE242" />
+  <Reference Identifier="9A7B9D2E-D5D2-4144-BDD9-46F46E855D19/r:Asteroids.Game" SourceId="9A7B9D2E-D5D2-4144-BDD9-46F46E855D19" Name="Asteroids.Game" TargetId="7DF078B5-A15C-4F8C-9C34-0D7FF0D2ADC7" />
+  <Reference Identifier="9A7B9D2E-D5D2-4144-BDD9-46F46E855D19/r:MonoGame.SharpMath" SourceId="9A7B9D2E-D5D2-4144-BDD9-46F46E855D19" Name="MonoGame.SharpMath" TargetId="C53EEC84-72C2-4DF7-A92E-E56E3FCEE242" />
+  <Reference Identifier="D752E618-29B5-4A71-9240-10171584390C/r:Asteroids.Core" SourceId="D752E618-29B5-4A71-9240-10171584390C" Name="Asteroids.Core" TargetId="E8FE5566-7614-4727-9C6A-6B5A320BED36" />
+</ArchitectureGraph>
