@@ -1,0 +1,120 @@
+ClassDiagram [frame=true framecolor=steelblue label="Class Diagram"] {
+  interface IBaseSystem {
+    Enabled : bool
+  }
+  
+  interface IDrawSystem {
+    Draw(gameTime: GameTime): void
+  }
+  
+  interface IUpdateSystem {
+    Update(gameTime: GameTime): void
+  }
+  
+  abstract class AbstractSystem {
+    public Enabled : bool
+    protected World : World
+  }
+  
+  abstract class EntityProcessingSystem<T> {
+  	Update(gameTime: GameTime): void
+    
+    abstract Update(entity : Entity, delta : GameTime ): void
+	}
+  
+  abstract class Component {
+    private _requiredTypes: List_Type
+    public RequiredComponents: ReadOnlyCollection_Type
+    
+    Require_T(): Component
+  }
+  
+  class Entity {
+    Id: int
+    IsDestroyed: bool
+    
+    Attach(component: Component): Entity
+    DeAttach(component: Component): Entity
+      
+    Has(component: Type): bool
+    Get_T(component: T): T
+    TryGet_T(component: T): Nullable_T
+  }
+  
+  class ComponentNotFoundException { }
+  class EntityNotFoundException { }
+  class CoreException { }
+  
+  class Message { }
+  
+  interface IMessageHandler {
+    Handle(message: Message): void
+  }
+  
+  abstract class TypedMessageHandler<T> {
+    Handle(message: Message) : void
+    
+    abstract Handle(message: T) : void 
+  }
+  
+  class InlineTypedMessageHandler<T> {
+    private _handler : MessageHandlerType_T
+    
+    Handle(message: Message) : void
+    
+    abstract Handle(message: T) : void 
+  }
+  
+  class World {
+    private _updateSystems: List_IUpdateSystem
+    private _drawSystems: List_IDrawSystem
+    private _entities: List_Entity
+    private _entitiesCounter: int
+    
+    private _messageHandlers: List_IMessageHandler
+    private _messagesQueue: Queue_Message
+  
+    public Entities: IEnumerable_Entity
+
+    public Width: int 
+    public Height: int 
+    
+    public Random: Random
+    
+    Register(updateSystem: IUpdateSystem): void
+    Register(drawSystem: IDrawSystem): void
+    Register(handler: IMessageHandler): void
+    Register_T(handle: MessageHandlerType_T)
+    
+    CreateEntity(): Entity
+    
+    Update(gameTime: GameTime): void
+    Draw(gameTime: GameTime): void
+    Send(message: Message): void
+    
+    Destroy(entityId: int): void
+    Destroy(entity: Entity): void
+    
+    Get_T(): T
+  }
+  
+  IDrawSystem -g-> IBaseSystem
+  IUpdateSystem -g-> IBaseSystem
+  AbstractSystem -r-> IBaseSystem
+  EntityProcessingSystem -g-> AbstractSystem
+  EntityProcessingSystem -r-> IUpdateSystem
+  
+  IMessageHandler -a-> World
+  IUpdateSystem -a-> World
+  IDrawSystem -a-> World
+  Component -a-> Entity
+  Entity -a-> World
+  
+  ComponentNotFoundException -g-> CoreException
+  EntityNotFoundException -g-> CoreException
+  
+  IMessageHandler --> Message;
+  
+  TypedMessageHandler -r-> IMessageHandler
+  InlineTypedMessageHandler -g-> TypedMessageHandler
+}
