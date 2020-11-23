@@ -15,5 +15,7 @@ namespace Asteroids.Systems.Game.Components.Entities
             .Require<Renderer>();
 
         public SpriteRenderer? ExhaustRenderer { get; set; }
+
+        public Animation? ExhaustAnimation { get; set; }
     }
 }

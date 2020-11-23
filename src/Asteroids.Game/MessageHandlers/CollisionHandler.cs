@@ -43,24 +43,35 @@ namespace Asteroids.Systems.Game.MessageHandlers
 
         private void BulletCollision(Entity bullet, Entity other)
         {
-            if (!other.Has<Asteroid>() || other.IsDestroyed) return;
+            if (other.IsDestroyed) return;
+            
+            if (!other.Has<Enemy>()) return;
 
             _world.Destroy(other);
             _world.Destroy(bullet);
 
-            var asteroid = other.Get<Asteroid>();
+            var asteroid = other.TryGet<Asteroid>();
 
-            SpawnAsteroidParts(other, asteroid);
-            
+            if (asteroid == null) // ufo
+            {
+                _world
+                    .Get<GameManagementSystem>()
+                    .Score += 150;
+            }
+            else
+            {
+                SpawnAsteroidParts(other, asteroid);
+
+                _world
+                    .Get<GameManagementSystem>()
+                    .Score += 10 * asteroid.Size;
+            }
+
             _world.Send(new Explosion
             {
                 Position = bullet.Get<Transform>().Position,
-                Size = asteroid.Size
+                Size = asteroid?.Size ?? 4
             });
-
-            _world
-                .Get<GameManagementSystem>()
-                .Score += 10 * asteroid.Size;
         }
 
         private void SpawnAsteroidParts(Entity other, Asteroid asteroid)
@@ -77,7 +88,7 @@ namespace Asteroids.Systems.Game.MessageHandlers
             {
                 Vector2 pos = asteroidTransform.Position + radius.Rotate(MathF.PI * 2 / asteroid.Size * i);
 
-                _world.Send(new SpawnAsteroid
+                _world.Send(new SpawnEnemy
                 {
                     Size = asteroid.Size - i,
                     Position = pos
@@ -87,7 +98,7 @@ namespace Asteroids.Systems.Game.MessageHandlers
 
         private void PlayerCollision(Entity player, Entity other)
         {
-            if (!other.Has<Asteroid>()) return;
+            if (!other.Has<Enemy>()) return;
 
             _world.Destroy(player);
 

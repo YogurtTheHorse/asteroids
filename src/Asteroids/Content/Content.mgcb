@@ -117,6 +117,9 @@
 #begin polygons/ship.json
 /copy:polygons/ship.json
 
+#begin polygons/ufo.json
+/copy:polygons/ufo.json
+
 #begin sfx/explosions/1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -249,6 +252,12 @@
 #begin animations/explosion.json
 /copy:animations/explosion.json
 
+#begin animations/ufo.json
+/copy:animations/ufo.json
+
+#begin animations/exhaust.json
+/copy:animations/exhaust.json
+
 #begin ship/bullet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -284,6 +293,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:ship/ship_exhaust_1.png
+
+#begin ship/ship_exhaust_2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ship/ship_exhaust_2.png
 
 
 #begin explosions/explosion_1.png
@@ -323,4 +344,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:explosions/explosion_3.png
+
+
+#begin ufo/ufo_1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ufo/ufo_1.png
+
+
+#begin ufo/ufo_2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ufo/ufo_2.png
 

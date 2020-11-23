@@ -40,11 +40,12 @@ namespace Asteroids.Systems.Game.Systems.Rendering
                 }
             }
             
-            var renderer = entity.Get<SpriteRenderer>();
+            SpriteRenderer renderer = animation.Renderer ?? entity.Get<SpriteRenderer>();
             var currentClip = 0;
 
-            for (var t = 0f; t + animation.Clips[currentClip].Duration < animation.Time; t += animation.Clips[currentClip].Duration)
+            for (var t = 0f; currentClip < animation.Clips.Length && t + animation.Clips[currentClip].Duration < animation.Time; )
             {
+                t += animation.Clips[currentClip].Duration;
                 currentClip++;
             }
 

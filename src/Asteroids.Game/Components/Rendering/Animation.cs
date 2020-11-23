@@ -7,6 +7,8 @@ namespace Asteroids.Systems.Game.Components.Rendering
     public class Animation : Component
     {
         public bool Loop { get; set; } = false;
+        
+        public SpriteRenderer? Renderer { get; set; }
 
         public Clip[] Clips { get; set; } = Array.Empty<Clip>();
 

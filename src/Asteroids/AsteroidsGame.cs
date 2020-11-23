@@ -37,7 +37,7 @@ namespace Asteroids
             IsMouseVisible = true;
 
             _graphics = new GraphicsDeviceManager(this);
-            _jsonLoader = new JsonLoader(Content.RootDirectory);
+            _jsonLoader = new JsonLoader(Content);
             _polygonLoader = new PolygonLoader(_jsonLoader);
             _world = new World(480, 360);
         }
@@ -73,14 +73,14 @@ namespace Asteroids
                 .Register(new GameManagementSystem(Content, _polygonLoader, _world))
                 .Register(new ExplosionsSpawner(_jsonLoader, _world))
                 .Register(new AnimationsSystem(Content, _world))
+                .Register(new UfoAi(_world))
                 .Register(new FontRendererSystem(spriteFont, GraphicsDevice, _world))
                 .Register(new CollidingSystem(_world));
 
             _world
-                .Register(new AsteroidSpawner(
+                .Register(new EnemiesSpawnerHandler(
                     GraphicsDevice,
                     Content,
-                    _polygonLoader,
                     _world
                 ))
                 .Register(new BulletSpawner(
@@ -106,6 +106,10 @@ namespace Asteroids
 
                     case Keys.F:
                         SetFullscreen(!_fullscreen);
+                        break;
+
+                    case Keys.Escape:
+                        Exit();
                         break;
                 }
             });

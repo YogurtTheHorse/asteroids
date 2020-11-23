@@ -4,7 +4,7 @@ using Asteroids.Systems.Game.Components.Rendering;
 
 namespace Asteroids.Systems.Game.Components.Entities
 {
-    public class Asteroid : Component
+    public class Asteroid : Enemy
     {
         public int Size { get; set; } = 4;
         

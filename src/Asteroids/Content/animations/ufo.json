@@ -1,0 +1,13 @@
+﻿{
+  "Loop": true,
+  "Clips": [
+    {
+      "Name": "ufo/ufo_1",
+      "Duration": 0.1
+    },
+    {
+      "Name": "ufo/ufo_2",
+      "Duration": 0.1
+    }
+  ]
+}

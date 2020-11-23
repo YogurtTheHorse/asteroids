@@ -1,12 +1,15 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
+using Microsoft.Xna.Framework.Content;
 
 namespace Asteroids.Systems.Game.Content
 {
     public class JsonLoader
     {
         private readonly string _contentRoot;
+        
+        public JsonLoader(ContentManager contentManager) : this(contentManager.RootDirectory) { }
 
         public JsonLoader(string contentRoot)
         {

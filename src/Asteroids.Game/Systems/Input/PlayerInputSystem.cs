@@ -19,7 +19,9 @@ namespace Asteroids.Systems.Game.Systems.Input
     /// </summary>
     public class PlayerSystem : EntityProcessingSystem<Player>
     {
-        public float RotationSpeed { get; set; } = MathF.PI;
+        public float ShootImpact { get; set; } = 5f;
+
+        public float RotationSpeed { get; set; } = MathF.PI * 1.5f;
 
         public float Acceleration { get; set; } = 200f;
 
@@ -65,12 +67,14 @@ namespace Asteroids.Systems.Game.Systems.Input
             {
                 return;
             }
-            
+
             var transform = player.Get<Transform>();
+            var rigidbody = player.Get<Rigidbody>();
 
             switch (message.Key)
             {
                 case Keys.Z:
+                    rigidbody.Velocity -= new Vector2(0f, -1f).Rotate(transform.Rotation) * ShootImpact;
                     World.Send(new SpawnBullet
                     {
                         Position = transform.Position,
@@ -79,9 +83,9 @@ namespace Asteroids.Systems.Game.Systems.Input
                     break;
 
                 case Keys.X:
-                    World.Send(new SpawnAsteroid
+                    World.Send(new SpawnEnemy
                     {
-                        Size = AsteroidSpawner.MaxSize
+                        Size = EnemiesSpawnerHandler.MaxSize
                     });
                     break;
             }
