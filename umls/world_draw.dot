@@ -1,0 +1,37 @@
+SequenceDiagram [frame=true framecolor=steelblue label="ECS system draw"] {
+  actor game
+  
+  lifeline "World" as world autoactivate
+  entity "IDrawSystem" as dsystem autoactivate
+  lifeline "Sprite batch" as sb autoactivate
+  
+  game --> game "Set target texture"
+ 
+  game --> world "Draw"
+  
+  fragment loop "{draw systems}" {
+    fragment opt "[Enabled]" {
+      world --> dsystem "Draw"
+      dsystem --> sb "Begin"
+      
+      dsystem --> world "Get entites with renderer"
+      dsystem <-r- world 
+      
+      fragment loop "{entites}" {
+        dsystem --> sb "Draw"
+        
+        fragment opt "[Touches screen]" {
+          dsystem --> sb "Draw copies"
+        }
+      }
+      
+      dsystem <-- sb "End"
+      
+      world <-r- dsystem
+    }
+  }
+  
+  game <-r- world
+  
+  game --> game "Render scaled target texture"
+}

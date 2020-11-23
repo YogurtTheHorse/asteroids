@@ -1,0 +1,32 @@
+SequenceDiagram [frame=true framecolor=steelblue label="ECS system update"] {
+  actor game
+  
+  lifeline "World" as world autoactivate
+  entity "MessageHandler" as msgHandler autoactivate
+  entity  "IUpdateSystem" as usystem autoactivate
+ 
+  game --> world "update"
+  world --> world "Get messages and clear queue"
+  
+  fragment loop "{messages}" {
+  	fragment loop "{handlers}" {
+      world --> msgHandler "Handle"
+      world <-r- msgHandler
+    }
+  }
+  
+  fragment loop "{update systems}" {
+    fragment opt "[e.Enabled]" {
+      world --> usystem "update"
+    	world <-r- usystem
+    }
+  }
+  
+  fragment loop "{entites}" {
+    fragment opt "[IsDestroyed]" {
+      world --> world "Remove from entites"
+    }
+  }
+  
+  game <-r- world
+}
