@@ -1,4 +1,5 @@
 ﻿using Asteroids.Core;
+using Asteroids.Core.Utils;
 using Asteroids.Systems.Game.Components;
 using Asteroids.Systems.Game.Components.Rendering;
 using Asteroids.Systems.Game.Messages;
@@ -24,8 +25,8 @@ namespace Asteroids.Systems.Game.Systems.Rendering
 
         protected override void DrawAt(Transform transform, Renderer renderer)
         {
-            var corners = GetBoundariesCorners(transform, renderer.GetRect());
-            var (minX, minY, maxX, maxY) = GetBoundaries(corners);
+            Vector2[] corners = GetBoundariesCorners(transform, renderer.GetRect());
+            (float minX, float minY, float maxX, float maxY) = corners.GetBoundaries();
 
             SpriteBatch.DrawRectangle(
                 new Rectangle((int)minX, (int)minY, (int)(maxX - minX), (int)(maxY - minY)),

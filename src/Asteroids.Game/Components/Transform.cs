@@ -18,6 +18,8 @@ namespace Asteroids.Systems.Game.Components
 
         public float Scale { get; set; } = 1f;
 
+        public bool KeepOnScreen { get; set; } = true;
+
         public Vector2 ToWorld(Vector2 local) => Position + (local * Scale).Rotate(Rotation);
 
         public Transform Translate(Vector2 v) =>

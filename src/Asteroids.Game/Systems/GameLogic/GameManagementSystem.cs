@@ -20,15 +20,15 @@ namespace Asteroids.Systems.Game.Systems.GameLogic
     public class GameManagementSystem : EntityProcessingSystem<ScoreComponent>
     {
         public int Score { get; set; }
+        public float LaserRechargeTime { get; set; } = 7f;
 
         private bool _gameStarted = false;
+        private float _timeToGiveLaser = 0f;
 
-        private readonly ContentManager _content;
         private readonly PolygonLoader _polygonLoader;
 
         public GameManagementSystem(ContentManager content, PolygonLoader polygonLoader, World world) : base(world)
         {
-            _content = content;
             _polygonLoader = polygonLoader;
             
             World.Register<KeyPressed>(Handle);
@@ -52,6 +52,7 @@ namespace Asteroids.Systems.Game.Systems.GameLogic
             World.Entities.With<LabelComponent>().ForEach(World.Destroy);
 
             PolygonRenderer polygon = _polygonLoader.Load("polygons/ship");
+            _timeToGiveLaser = LaserRechargeTime;
 
             World
                 .CreateEntity()
@@ -60,10 +61,7 @@ namespace Asteroids.Systems.Game.Systems.GameLogic
                     Position = new Vector2(World.Width / 2f, World.Height / 2f)
                 })
                 .Attach(new Rigidbody())
-                .Attach(new SpriteRenderer
-                {
-                    Texture = _content.Load<Texture2D>("ship/ship")
-                })
+                .Attach(new SpriteRenderer())
                 .Attach(polygon)
                 .Attach(new Collider(new Polygon2(polygon.Vertices)))
                 .Attach(new Player());
@@ -84,9 +82,27 @@ namespace Asteroids.Systems.Game.Systems.GameLogic
         {
             base.Update(delta);
 
-            if (!World.Entities.With<Player>().Any() && _gameStarted)
+            Entity? playerEntity = World.Entities.With<Player>().FirstOrDefault();
+            _timeToGiveLaser -= (float) delta.ElapsedGameTime.TotalSeconds;
+
+            if (playerEntity is null && _gameStarted)
             {
                 StopGame();
+            }
+            else if (playerEntity != null && _timeToGiveLaser < 0 )
+            {
+                var player = playerEntity.Get<Player>();
+                
+                if (player.LasersCount < 3)
+                {
+                    _timeToGiveLaser = LaserRechargeTime;
+                    player.LasersCount++;
+
+                    if (player.LasersCount == 1)
+                    {
+                        World.Send(new PlaySound("sfx/charged"));
+                    }
+                }
             }
         }
 

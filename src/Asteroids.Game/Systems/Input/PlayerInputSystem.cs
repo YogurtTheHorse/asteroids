@@ -7,6 +7,7 @@ using Asteroids.Core.Utils;
 using Asteroids.Systems.Game.Components;
 using Asteroids.Systems.Game.Components.Entities;
 using Asteroids.Systems.Game.Components.Physics;
+using Asteroids.Systems.Game.Enums;
 using Asteroids.Systems.Game.MessageHandlers;
 using Asteroids.Systems.Game.Messages;
 using Microsoft.Xna.Framework;
@@ -61,15 +62,16 @@ namespace Asteroids.Systems.Game.Systems.Input
 
         private void KeyPressedHandler(KeyPressed message)
         {
-            Entity? player = World.Entities.FirstOrDefault(f => f.Has<Player>());
+            Entity? playerEntity = World.Entities.FirstOrDefault(f => f.Has<Player>());
 
-            if (player is null)
+            if (playerEntity is null)
             {
                 return;
             }
 
-            var transform = player.Get<Transform>();
-            var rigidbody = player.Get<Rigidbody>();
+            var transform = playerEntity.Get<Transform>();
+            var rigidbody = playerEntity.Get<Rigidbody>();
+            var player = playerEntity.Get<Player>();
 
             switch (message.Key)
             {
@@ -82,10 +84,13 @@ namespace Asteroids.Systems.Game.Systems.Input
                     });
                     break;
 
-                case Keys.X:
-                    World.Send(new SpawnEnemy
+                case Keys.X when player.LasersCount > 0:
+                    player.LasersCount--;
+                    World.Send(new SpawnBullet
                     {
-                        Size = EnemiesSpawnerHandler.MaxSize
+                        BulletType = BulletType.Laser,
+                        Position = transform.Position,
+                        Rotation = transform.Rotation
                     });
                     break;
             }

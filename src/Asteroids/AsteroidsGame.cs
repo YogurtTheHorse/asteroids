@@ -84,8 +84,7 @@ namespace Asteroids
                     _world
                 ))
                 .Register(new BulletSpawner(
-                    Content.Load<Texture2D>("ship/bullet"),
-                    _polygonLoader,
+                    Content,
                     _world
                 ))
                 .Register(new CollisionHandler(_world))

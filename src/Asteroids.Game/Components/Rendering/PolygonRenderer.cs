@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
+using Asteroids.Core.Utils;
 using Microsoft.Xna.Framework;
 
 namespace Asteroids.Systems.Game.Components.Rendering
@@ -26,10 +27,7 @@ namespace Asteroids.Systems.Game.Components.Rendering
 
         public override RectangleF GetRect()
         {
-            var minX = Vertices.Min(v => v.X);
-            var minY = Vertices.Min(v => v.Y);
-            var maxX = Vertices.Max(v => v.X);
-            var maxY = Vertices.Max(v => v.Y);
+            (float minX, float minY, float maxX, float maxY) = Vertices.GetBoundaries();
 
             return RectangleF.FromLTRB(minX, maxY, maxX, minY);
         }

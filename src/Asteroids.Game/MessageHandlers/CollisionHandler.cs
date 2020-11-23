@@ -5,6 +5,7 @@ using Asteroids.Core.Messaging;
 using Asteroids.Core.Utils;
 using Asteroids.Systems.Game.Components;
 using Asteroids.Systems.Game.Components.Entities;
+using Asteroids.Systems.Game.Enums;
 using Asteroids.Systems.Game.Messages;
 using Asteroids.Systems.Game.Systems;
 using Asteroids.Systems.Game.Systems.GameLogic;
@@ -48,7 +49,10 @@ namespace Asteroids.Systems.Game.MessageHandlers
             if (!other.Has<Enemy>()) return;
 
             _world.Destroy(other);
-            _world.Destroy(bullet);
+            if (bullet.Get<Bullet>().BulletType != BulletType.Laser)
+            {
+                _world.Destroy(bullet);
+            }
 
             var asteroid = other.TryGet<Asteroid>();
 

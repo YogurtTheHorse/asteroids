@@ -102,6 +102,9 @@
 #begin polygons/bullet.json
 /copy:polygons/bullet.json
 
+#begin polygons/long_bullet.json
+/copy:polygons/long_bullet.json
+
 #begin polygons/planetoids/planetoid_1.json
 /copy:polygons/planetoids/planetoid_1.json
 
@@ -119,6 +122,12 @@
 
 #begin polygons/ufo.json
 /copy:polygons/ufo.json
+
+#begin sfx/charged.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/charged.wav
 
 #begin sfx/explosions/1.wav
 /importer:WavImporter
@@ -270,6 +279,18 @@
 /processorParam:TextureFormat=Color
 /build:ship/bullet.png
 
+#begin ship/bullet_long.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ship/bullet_long.png
+
 #begin ship/ship.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -281,6 +302,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:ship/ship.png
+
+#begin ship/ship_charged.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ship/ship_charged.png
 
 #begin ship/ship_exhaust_1.png
 /importer:TextureImporter

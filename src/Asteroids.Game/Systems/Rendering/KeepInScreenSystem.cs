@@ -2,6 +2,7 @@
 using Asteroids.Core.Ecs;
 using Asteroids.Core.Ecs.Systems;
 using Asteroids.Systems.Game.Components;
+using Asteroids.Systems.Game.Components.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -21,9 +22,18 @@ namespace Asteroids.Systems.Game.Systems.Rendering
 
         public override void Update(Entity entity, GameTime delta)
         {
-            var height = World.Height;
-            var width = World.Width;
             var transform = entity.Get<Transform>();
+
+            if (transform.KeepOnScreen)
+            {
+                PutBackOnScreen(transform);
+            }
+        }
+
+        private void PutBackOnScreen(Transform transform)
+        {
+            int height = World.Height;
+            int width = World.Width;
 
             if (transform.Position.X > width)
             {

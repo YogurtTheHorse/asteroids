@@ -14,6 +14,8 @@ namespace Asteroids.Systems.Game.Components.Entities
             .Require<Rigidbody>()
             .Require<Renderer>();
 
+        public int LasersCount { get; set; } = 1;
+
         public SpriteRenderer? ExhaustRenderer { get; set; }
 
         public Animation? ExhaustAnimation { get; set; }

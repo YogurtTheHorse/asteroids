@@ -7,22 +7,32 @@ using Asteroids.Systems.Game.Components.Rendering;
 using Asteroids.Systems.Game.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Asteroids.Systems.Game.Systems.GameLogic
 {
     public class PlayerAnimationSystem : EntityProcessingSystem<Player>
     {
         private readonly JsonLoader _jsonLoader;
+        private readonly Texture2D _chargedTexture;
+        private readonly Texture2D _emptyTexture;
 
         public PlayerAnimationSystem(ContentManager contentLoader, World world) : base(world)
         {
             _jsonLoader = new JsonLoader(contentLoader);
+            _chargedTexture = contentLoader.Load<Texture2D>("ship/ship_charged");
+            _emptyTexture = contentLoader.Load<Texture2D>("ship/ship");
         }
 
         public override void Update(Entity entity, GameTime delta)
         {
             var player = entity.Get<Player>();
             var rigidbody = entity.Get<Rigidbody>();
+            var renderer = entity.Get<SpriteRenderer>();
+
+            renderer.Texture = player.LasersCount > 0
+                ? _chargedTexture
+                : _emptyTexture;
 
             if (rigidbody.Acceleration.Length() > 0 && player.ExhaustRenderer is null)
             {
