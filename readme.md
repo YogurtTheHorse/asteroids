@@ -27,6 +27,15 @@ Source code is located ander `src` directory and consists of several projects:
 ## Dependencies
 Most of dependencies are managed by NuGet, but I had to use submodules for SharpLab2, because it doesn't have a publisher nuget package and also I copied Primirives2D class for drawing primitives by the same reaseons. So when cloning repo make sure to put `--recursive` key in clone command.
 
+# Build instructions
+First of all - it uses .Net 5. Windows binaries can be found in [releases](https://github.com/YogurtTheHorse/asteroids/releases) in case you don't have an sdk toolkit.
+
+After sdk is isntalled, simply build `Asteroids` project by these commands
+```bash
+cd src
+dotnet build --project Asteroids/Asteroids.csproj
+```
+
 # Arhitecure
 
 ## ECS
