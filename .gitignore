@@ -163,8 +163,7 @@ DocProject/Help/*.HxC
 DocProject/Help/*.hhc
 DocProject/Help/*.hhk
 DocProject/Help/*.hhp
-DocProject/Help/Html2
-DocProject/Help/html
+DocProject/Help/Html2DocProject/Help/html
 
 # Click-Once directory
 publish/
@@ -379,3 +378,5 @@ _UpgradeReport_Files/
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+builds/**
